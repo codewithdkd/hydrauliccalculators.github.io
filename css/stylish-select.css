@@ -1,0 +1,220 @@
+/**
+* Stylish Select 0.4.9 - $ plugin to replace a select drop down box with a stylable unordered list
+* http://github.com/scottdarby/Stylish-Select/
+* 
+* Copyright (c) 2009 Scott Darby
+* 
+* Requires: jQuery 1.3 or newer
+* 
+* Dual licensed under the MIT and GPL licenses.
+*/
+
+/**
+* Hide lists on page load
+---------------------------------------------------------*/
+
+.stylish-select .SSContainerDivWrapper {
+    left: -9999px;
+}
+
+/*
+* Red example
+---------------------------------------------------------*/
+
+.stylish-select .SSContainerDivWrapper {
+    margin: 0;
+    padding: 0;
+    width: 290px;
+    position: absolute;
+    top: 22px;
+    left: 0;
+    z-index: 99999;
+    width: 80px;
+    height: auto !important;
+    background: #FFFFFF;
+    border: 1px solid #ccc;
+}
+
+.stylish-select ul.newList {
+    /* margin:0; */
+    padding: 0;
+    list-style: none;
+    color: #000;
+    /* background:#fff;
+	border:1px solid #ccc;
+	overflow:auto; */
+    width: 78px;
+}
+
+/* .stylish-select ul.newList * {
+	margin:0;
+	padding:0;
+}
+ */
+
+.stylish-select ul.newList a {
+    color: #000;
+    text-decoration: none;
+    display: block;
+    padding: 3px 5px 3px 10px;
+    outline: none;
+    font-size: 13px;
+    text-align: left;
+    padding-left: 10px;
+    line-height: 24px;
+}
+
+.stylish-select ul.newList a:hover {
+    /*color: #fff !important;*/
+}
+
+.stylish-select .newListSelected {
+    width: 78px;
+    /* color:#000; */
+    height: 28px;
+    /* padding:3px 0 0 6px; */
+    float: right;
+    border: 1px solid #DBDBDB;
+    border-radius: 3px 3px 3px 3px;
+    font-size: 13px;
+    outline: none;
+    margin-right: -7px;
+    background-color: white;
+}
+
+.stylish-select ul.newList li a:focus {
+    -moz-outline-style: none;
+}
+
+.stylish-select .selectedTxt {
+    /* 	width:258px;
+overflow:hidden; */
+    height: 20px;
+    padding: 9px 20px 0 7px;
+    font-size: 13px;
+    text-align: left;
+    line-height: 9px;
+    background-image: url('../images/Down arrow.png') !important;
+    background-repeat: no-repeat;
+    background-position: right 7px center;
+    padding-left: 10px;
+}
+
+.stylish-select .hiLite {
+    /* background:#650101!important;
+	color:#fff!important; */
+}
+
+.stylish-select .newListHover {
+    /* background:#ccc!important;
+	color:#000!important; */
+    cursor: default;
+}
+
+.stylish-select .newListDisabled {
+    opacity: 0.6;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+    filter: alpha(opacity=60);
+}
+
+.stylish-select .newListItemDisabled {
+    opacity: 0.6;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+    filter: alpha(opacity=60);
+}
+
+.stylish-select .newListOptionDisabled {
+    opacity: 0.6;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+    filter: alpha(opacity=60);
+}
+
+.stylish-select .newListSelHover,
+.stylish-select .newListSelFocus,
+.stylish-select .newListSelected:focus {
+    /* background-position:0 -22px;
+	cursor:default; */
+    outline: 1px dotted #333;
+}
+
+/* .stylish-select .newListOptionTitle {
+	font-weight:bold;
+}
+
+.stylish-select .newListOptionTitle ul {
+	margin:3px 0 0;
+}
+
+.stylish-select .newListOptionTitle li {
+	font-weight:normal;
+} */
+
+.newList li:hover {
+    background: #f1f1f1 !important;
+}
+
+#output .newList li {
+    margin-left: 0px !important;
+}
+
+#output .newListSelected {
+    margin-right: -28px;
+}
+
+#output .newList {
+    height: auto !important;
+    position: absolute;
+    z-index: 999999;
+    border: 1px solid #DBDBDB;
+    /*border-bottom: none;*/
+    margin: auto -1px;
+    margin-top: 1px;
+    width: 78px;
+}
+
+#input .newList {
+    height: auto !important;
+    position: absolute;
+    z-index: 999999;
+    border: 1px solid #DBDBDB;
+    margin: auto -1px;
+    width: 78px;
+    margin-top: 1px;
+    border-bottom: none !important;
+}
+
+#input .newList li {
+    margin-top: 0px;
+    background: #FFFFFF;
+    /*border-left: 1px solid #c0c0c0;
+	border-right: 1px solid #c0c0c0;*/
+    border: none;
+    height: 30px;
+    text-align: left;
+    border-bottom: 1px solid #DBDBDB;
+}
+
+#input .newList li:first-child {
+    /*border-top: 1px solid #C0C0C0;*/
+}
+
+#input .newList li:hover {
+    background: #2ca7b9;
+}
+
+#output .newList li {
+    margin-top: 0px;
+    background: #FFFFFF;
+    border: none;
+    /*border-top: 1px solid #C0C0C0;
+	border-left: 1px solid #c0c0c0;
+	border-right: 1px solid #c0c0c0;*/
+    height: 30px;
+    text-align: left;
+    border-bottom: 1px solid #DBDBDB;
+}
+
+#output .newList li:hover {
+    background-color: #49B1BB;
+    ;
+}

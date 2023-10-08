@@ -1,0 +1,884 @@
+/*.outpDOverride{
+    margin-left:12px !important;
+}*/
+
+.outputFooterColor {
+    color: #49B1BB;
+    font-weight: 100;
+}
+
+.outputFooterOverride {
+    position: relative;
+    padding-left: 0px;
+}
+
+.outpInpOr {
+    border: none !important;
+}
+
+/*.outpInpLiOr{
+    margin-left:135px !important;
+}*/
+
+.outpSelOr {
+    margin-left: -16px !important;
+}
+
+.outppDOr {
+    background: none !important;
+}
+
+/*#lioutpipCroSec{
+    margin-left:90px !important;
+}*/
+
+#lioutpipVel {
+    margin-left: 30px !important;
+}
+
+#link>span {
+    float: left;
+    padding-left: 10px;
+    margin-top: 16px;
+    width: 71px;
+    /* ravichandran changes for alignment  */
+    text-align: left;
+}
+
+/*#link > li > .newListSelected {
+    float:left !important;
+    margin-right: 0px !important;
+    width:200px !important;
+}*/
+
+.commonHeader {
+    /* ravichandran changes for alignment  */
+    width: 100%;
+    position: relative;
+}
+
+#motorHeaderText,
+#pumpHeaderText,
+#pressureDropHeaderText,
+#pressureDropHeaderText {
+    color: #49B1BB;
+    font-size: 14px;
+    /*font-family: 'Franklin Gothic Book';*/
+    font-family: "ITC Franklin Gothic Std Demi", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+}
+
+#link>.hDDOverride>select {
+    border: 1px solid #DBDBDB;
+    border-radius: 3px;
+    width: 220px;
+    height: 30px;
+    font-size: 14px;
+    /*font-family: 'Franklin Gothic Book';*/
+    font-family: "ITC Franklin Gothic Std Demi", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+}
+
+#link>.hDDOverride {
+    padding-left: 10px;
+    margin-top: 7px;
+    float: left;
+}
+
+.pdOutOverride {
+    margin-left: 147px !important;
+}
+
+/*
+for removing the up down arrows in input type = number
+*/
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#unit_selection {
+    width: 392px;
+    height: 40px;
+    position: relative;
+    display: inline;
+}
+
+.floating {
+    margin: 0;
+    padding: 0;
+}
+
+.padding-top-5 {
+    width: 100%;
+}
+
+.padding-top-5 .floating.lefty {
+    width: 33%;
+    float: left;
+    text-align: left;
+    padding-right: 6px;
+}
+
+.lefty {
+    padding-right: 25px;
+    float: left;
+    font-size: 14px;
+}
+
+.padding-top-5 .righty {
+    width: 50%;
+    float: left;
+}
+
+.righty {
+    /*float:right;
+   width:248px; 
+   float: left;*/
+}
+
+.mlefty {
+    float: left;
+    width: 122px;
+    cursor: pointer;
+    line-height: 26px;
+    border-radius: 3px 0px 0px 3px;
+}
+
+.righty div {
+    /*font-family: Franklin Gothic Book, Regular;*/
+    font-family: "ITC Franklin Gothic Std Demi", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    width: 75px;
+    font-size: 13px;
+}
+
+.measurementSelectedBtn {
+    background: #49B1BB;
+    color: white;
+    border: 1px solid #49B1BB;
+}
+
+.measurementNonSelectedBtn {
+    background: white;
+    color: black;
+    border: 1px solid #DBDBDB;
+}
+
+.irighty {
+    float: left;
+    width: 122px;
+    cursor: pointer;
+    line-height: 26px;
+    border-radius: 0px 3px 3px 0px;
+}
+
+.leftSpanOverride {
+    /*font-family: Franklin Gothic, Medium;*/
+    font-family: "ITC Franklin Gothic Std Demi", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    position: relative;
+    top: 5px;
+}
+
+.leftSpanOverride.de {
+    font-size: 11px;
+}
+
+.padding-top-5 {
+    padding-top: 5px;
+}
+
+.padding-top-15 {
+    padding-top: 15px;
+}
+
+.topTabHeaders {
+    float: left;
+    cursor: pointer;
+    display: inline;
+    width: 20%;
+    height: 61.5px;
+}
+
+.sliderParaDiv>p {
+    margin: 0px;
+    font-size: 14px;
+    color: #393939;
+}
+
+.turquoiseColor {
+    color: #49B1BB !important;
+}
+
+.topTabHeight {
+    height: 61.5px;
+}
+
+.uLineOverride {
+    background: #49B1BB !important;
+}
+
+#cylinderULine,
+#motorULine,
+#pumpULine,
+#pressureDropULine,
+#pipingULine {
+    width: 74px;
+    margin-left: 10px;
+    height: 2px;
+    background: white;
+}
+
+.margin-top-10 {
+    margin-top: 10px !important;
+}
+
+#pressureTabIdText {
+    /* width:30px;
+    margin-left:20px; */
+    text-align: center;
+}
+
+#cylinderTabIdText {
+    /*margin-left:16px;*/
+}
+
+.formulaeText {
+    font-size: 14px;
+    color: #49B1BB;
+    position: relative;
+    padding-left: 6.85px;
+    top: -2px;
+    /* font-weight: 700;*/
+}
+
+.sigmaText {
+    font-size: 25px;
+}
+
+.frmContainerie7 {
+    padding-top: 0px;
+}
+
+.ioDivider {
+    position: relative;
+    height: 20px;
+    width: 470px;
+    margin-left: -17px;
+    margin-top: -9px;
+    margin-bottom: -2px;
+}
+
+.ioDividerOld {
+    position: relative;
+    height: 20px;
+    margin-top: -5px;
+    width: 470px;
+    margin-left: -17px;
+}
+
+.ioInnerDiv {
+    width: 447px;
+    background: #DBDBDB;
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -1px 0 0 -207.5px;
+}
+
+.ioInnerDivOld {
+    width: 444px !important;
+}
+
+/*
+.boreSideULine{
+    width: 69px;
+    border: 1px solid #EFEFEF;
+    position: relative;
+    top: 4px;
+}*/
+
+#li1 {
+    margin-right: -14px !important;
+    margin-left: 94px !important;
+    /*font-family: 'Franklin Gothic Book' !important;*/
+    font-family: "ITC Franklin Gothic Std Demi", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif !important;
+}
+
+#li1.zh {
+    margin-right: 2px !important;
+    margin-left: 111px !important;
+}
+
+#li1.de {
+    margin-left: 90px !important;
+}
+
+#li2 {
+    font-family: "ITC Franklin Gothic Std Demi", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif !important;
+    margin-left: 98px !important;
+}
+
+#li2.zh {
+    margin-left: 107px !important;
+}
+
+#li2.de {
+    margin-left: 78px !important;
+}
+
+.btnContainerOverride {
+    margin-right: 16px !important;
+    /* height:30px !important;*/
+}
+
+.listElement {
+    height: 30px;
+    padding-left: 9.5px;
+    padding-right: 10px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+
+.leftListElement {
+    display: inline;
+    float: left;
+    position: relative;
+    top: 4px;
+}
+
+.rightListElement {
+    display: inline;
+    float: right;
+    margin-right: 7px;
+}
+
+.innerListElement {
+    display: inline;
+    float: left;
+}
+
+.padding-right-10 {
+    padding-right: 10px;
+}
+
+.innerListElementInput {
+    font-size: 14px;
+    letter-spacing: 0.2px;
+    position: relative;
+    width: 104px;
+    height: 26px;
+    border-radius: 3px 3px 3px 3px;
+    border: 1px solid #DBDBDB;
+    display: inline-block;
+    line-height: 30px\9;
+    text-align: right;
+    padding-left: 9px;
+    padding-right: 9px;
+    /*font-family: 'Franklin Gothic Medium';*/
+    font-family: "ITC Franklin Gothic Std Demi", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    font-weight: 500;
+    z-index: 1;
+}
+
+.innerListElementInput:focus {
+    outline: none;
+    box-shadow: 0px;
+    -webkit-box-shadow: 0;
+    -moz-box-shadow: 0;
+    border: 1px solid #49B1BB;
+}
+
+.innerListSelect {
+    width: 90px;
+    height: 30px;
+    border: 1px solid #DBDBDB;
+    border-radius: 3px 3px 3px 3px;
+    font-size: 13px;
+    /*font-family: 'Franklin Gothic Book';*/
+    font-family: "ITC Franklin Gothic Std Demi", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    padding-left: 10px;
+}
+
+.innerListSelect: focus {
+    border: 1px solid #49B1BB;
+}
+
+.utilityButtons {
+    height: 30px;
+    width: 100px;
+    float: left;
+    margin-right: 10px;
+    border-radius: 5px;
+    position: relative;
+    margin-right: 16px !important;
+}
+
+.utilityBtnDisabled {
+    height: 30px;
+    width: 100px;
+    float: left;
+    /* margin-right: 10px; */
+    border-radius: 5px;
+    position: relative;
+    z-index: 9999;
+    background: #DBDBDB;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.utilityBtnEnabled {
+    height: 30px;
+    width: 100px;
+    float: left;
+    /* margin-right: 10px; */
+    border-radius: 5px;
+    position: relative;
+    z-index: 9999;
+    cursor: pointer !important;
+    background: #49B1BB;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    cursor: pointer;
+}
+
+.buttonContainerNew {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    background: #F1F1F1;
+    float: left;
+    width: 100%;
+}
+
+.utilityBtnInput {
+    color: #FFFFFF;
+    border: none;
+    font-size: 14px;
+    /* font-family: 'Franklin Gothic Medium';*/
+    font-family: "ITC Franklin Gothic Std Demi", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    font-weight: 100;
+    line-height: 28px;
+    background: transparent;
+    cursor: inherit;
+}
+
+.leftListElement>label {
+    font-size: 14px;
+    /* font-family: 'Franklin Gothic Book';*/
+    font-family: "ITC Franklin Gothic Std Demi", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    color: #000000;
+}
+
+.copyToaster {
+    display: none;
+    width: 173px;
+    height: 28px;
+    border: 1px solid #000000;
+    border-radius: 8px 8px 8px 8px;
+    opacity: 0.46;
+    background: #000000;
+    position: absolute;
+    left: calc(50vw - 87.5px);
+    color: #FFFFFF;
+    line-height: 28px;
+    z-index: 9999999;
+}
+
+#outerMotor {
+    background-color: #FFFFFF;
+    border: 2px solid #BBB7B7;
+    border-bottom: 2px solid #BBB7B7;
+    position: absolute;
+    bottom: 0;
+    padding: 5px;
+    width: 467px;
+    height: 459px;
+    margin-left: -5px;
+    z-index: 999999;
+}
+
+.nmailHead {
+    background: #EFEFEF;
+    height: 42px;
+}
+
+#sendNew,
+#sendNewP,
+#sendNewM,
+#sendNewPD,
+#sendNewPip {
+    border-radius: 4px;
+    width: 100px;
+    height: 30px;
+    margin-top: 7px;
+    color: #FFFFFF;
+    font-weight: bold;
+    border: none;
+    background: #DBDBDB;
+    padding: 0px;
+}
+
+#cancelNew {
+    border-radius: 4px;
+    width: 100px;
+    height: 30px;
+    margin-top: 6px;
+    margin-right: 11px;
+    color: #FFFFFF;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    background: #49B1BB;
+    padding: 0px;
+}
+
+#messageMotor {
+    width: 445px;
+    height: 187px;
+    margin: 0px 5px;
+    border: 1px solid #DBDBDB;
+    /* margin-left: -94px; */
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+#messageMotor .dv3 {
+    width: 57px;
+}
+
+.contentsNew .dv2 {
+    width: 235px;
+    /*float:none !important;
+    text-align: center;*/
+}
+
+.outerEmailMotor,
+.outerEmailPump,
+.outerEmailPD,
+.outerEmailPiping {
+    background-color: #FFFFFF;
+    border: 1px solid #DBDBDB;
+    position: absolute;
+    bottom: 0;
+    padding: 5px;
+    width: 458px;
+    height: 425px;
+    margin-left: -1px;
+    z-index: 999999;
+    border-bottom: 1px solid transparent;
+}
+
+.frmContainerie7New {
+    height: 346px;
+}
+
+#mainPicPump,
+#mainPicPressureDrop,
+#mainPicPiping,
+#mainPicMotor {
+    border-bottom: 1px solid #DBDBDB;
+    width: 100%;
+}
+
+#selpDOrifice+.newListSelected,
+#selpDGravity+.newListSelected,
+#seloutpipReynoldNum+.newListSelected,
+#selpipSpGravity+.newListSelected {
+    visibility: hidden;
+}
+
+.sliderParaDiv {
+    padding-top: 6px;
+}
+
+#crossIcon8>img,
+#crossIcon7>img,
+#crossIcon6>img,
+#crossIcon4>img,
+#crossIcon5>img,
+#crossIcon61>img {
+    top: 3px;
+    height: 8px;
+    position: relative;
+    right: 2px;
+}
+
+#crossIcon3>img,
+#crossIcon>img,
+#crossIcon2>img {
+    height: 8px;
+    position: relative;
+    right: 2px;
+}
+
+.emailBigCross {
+    height: 18px;
+    position: relative;
+    top: 4px;
+}
+
+.emailTopHeaderTxtOverride {
+    position: relative;
+    top: 3px;
+    /* font-size:18px; */
+}
+
+#pressureTabIdText1 {
+    position: relative;
+    /* left:-3px; */
+}
+
+.contentsNew .dv1 {
+    padding-top: 10px;
+    height: 23px;
+    display: flex;
+    align-items: center;
+    width: 100px !important;
+}
+
+li>.hiLite {
+    background-color: #49B1BB;
+    color: white !important;
+}
+
+/*removing outline focus in elements*/
+
+input:focus {
+    outline: none;
+}
+
+a:focus {
+    outline: none;
+}
+
+:focus {
+    outline: none;
+}
+
+::-moz-focus-inner {
+    border: 0;
+}
+
+/****************************************************************************************************
+                        Firefox specific code
+****************************************************************************************************/
+
+@-moz-document url-prefix() {
+    #input ul li input {
+        width: 111px;
+        height: 28px;
+        border: 1px solid #DBDBDB;
+        margin-right: -111px !important;
+        font-weight: 500 !important;
+        /*font-family:'Franklin Gothic Medium' !important;*/
+        font-family: "ITC Franklin Gothic Std Demi", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif !important;
+    }
+    #output ul li input {
+        width: 111px !important;
+    }
+    .outputFields {
+        margin-left: -29px !important;
+    }
+    .utilityBtnInput:focus {
+        padding: 0px;
+        margin: 0px;
+    }
+}
+
+/*.utilityBtnInput:lang,.utilityBtnInput:link,.utilityBtnInput:visited,.utilityBtnInput:focus, .utilityBtnInput:active, .utilityBtnInput:hover {
+    padding: 0px !important;
+    margin: 0px !important;
+}*/
+
+/* remove ie related code*/
+
+::-ms-clear {
+    display: none;
+}
+
+/*IE10+*/
+
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {
+    #link a {
+        text-align: right;
+    }
+    #pipingHeaderDD+.newListSelected>.newList a,
+    #pumpHeaderDD+.newListSelected>.newList a,
+    #motorHeaderDD+.newListSelected>.newList a {
+        text-align: left;
+    }
+    .utilityBtnInput:lang,
+    .utilityBtnInput:link,
+    .utilityBtnInput:visited,
+    .utilityBtnInput:focus,
+    .utilityBtnInput:active,
+    .utilityBtnInput:hover {
+        padding: 0px !important;
+        margin: 0px !important;
+        /* outline:none;
+    border:none;*/
+    }
+    :lang(jp) .utilityBtnInput {
+        line-height: 33px;
+    }
+    :lang(jp) .buttonContainer input {
+        line-height: 33px;
+    }
+    .innerListElementInput {
+        letter-spacing: 0.2px;
+    }
+}
+
+/*jp language specific code*/
+
+:lang(jp) #crossIcon {
+    margin-top: -26px !important;
+}
+
+:lang(jp) #crossIcon2 {
+    margin-top: -26px !important;
+}
+
+:lang(jp) #crossIcon3 {
+    margin-top: -23px !important;
+}
+
+:lang(jp) #crossIcon61 {
+    margin-top: -28px !important;
+}
+
+:lang(jp) .dv1 {
+    width: 119px;
+    paddding: 10px !important;
+}
+
+:lang(jp) #outer {
+    height: 847px;
+}
+
+:lang(jp) #message {
+    height: 609px;
+}
+
+:lang(jp) .dv2 {
+    width: 210px;
+}
+
+:lang(jp) div#innerbox3 {
+    width: 445px;
+    font-size: 9px;
+}
+
+:lang(jp) div#box3 {
+    height: auto;
+}
+
+:lang(jp) .emailHeadingleft {
+    position: relative;
+    top: -3px;
+}
+
+:lang(jp) .emailHeadingright {
+    position: relative;
+    top: -3px;
+}
+
+:lang(jp) .dv4 {
+    width: 102px;
+}
+
+:lang(jp) .dv5 {
+    width: 98px;
+}
+
+:lang(jp) #txtf {
+    height: auto;
+}
+
+:lang(jp) .contents {
+    height: 581px;
+}
+
+:lang(jp) .lblsjp {
+    position: relative;
+    top: -3px;
+}
+
+:lang(jp) #mail_failPiping {
+    font-size: 12px !important;
+}
+
+:lang(jp) #mail_failPD {
+    font-size: 12px !important;
+}
+
+:lang(jp) #mail_failPump {
+    font-size: 12px !important;
+}
+
+:lang(jp) #mail_fail {
+    font-size: 12px !important;
+}
+
+:lang(jp) #mail_failMotor {
+    font-size: 12px !important;
+}
+
+:lang(jp) #messageMotor .dv3 {
+    width: 63px !important;
+}
+
+:lang(jp) .contentsNew .dv2 {
+    width: 229px;
+}
+
+#to:focus {
+    border: 1px solid rgb(73, 177, 187);
+}
+
+:lang(jp) .leftSpanOverride {
+    padding-right: 65px;
+}
+
+/**********************************************************************************************************************
+                        Edge Specific Code
+**********************************************************************************************************************/
+
+@supports (-ms-ime-align: auto) {
+    .innerListElementInput {
+        letter-spacing: 0.7px !important;
+    }
+    #output ul li input {
+        letter-spacing: 0.05px !important;
+    }
+}
+
+/********************************************************************************************************************
+                Remove Button push effect
+********************************************************************************************************************/
+
+/*button:active {
+  border-style: outset;
+}
+button{
+    border-style:outset;
+}*/
+
+/*.utilityBtnInput:focus {
+    padding: 0px;
+    margin: 0px;
+}*/
+
+.emailHeadingLeftLeft {
+    float: left;
+    font-size: 13px;
+    line-height: 32px;
+    /* padding-left: 99px; */
+    width: 99px;
+    border-right: 1px solid #DBDBDB;
+    background: #F1F1F1;
+    text-align: right;
+}

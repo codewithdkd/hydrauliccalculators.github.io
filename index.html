@@ -1,0 +1,2077 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Hydraulic Cylinder Calculator</title>
+
+
+    <!--[if lt IE 9]>
+    <script src="js/PIE.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/stylish-select.css" />
+    <!-- new css files added -->
+
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <link rel="stylesheet" type="text/css" href="css/fonts.css">
+
+    <!--Slider CSS -->
+    <style>
+        #variableSlider {
+            position: relative;
+            margin: 0 !important;
+            left: 26px;
+        }
+
+        .sliderImages {
+            width: 28px !important;
+        }
+
+        #sliderContainer {
+            margin-top: 40px;
+            margin-bottom: 10px;
+        }
+
+        #cylinderTabImgId {
+            /* position: relative;
+        left:10px;*/
+        }
+
+        #cylinderTabId {
+            cursor: pointer;
+        }
+
+        .commonHeader {
+            height: 45px;
+            background: #F1F1F1;
+            border-bottom: 1px solid #DBDBDB;
+        }
+
+        #link {
+            /*height: 36px;
+      border-bottom: 2px solid black;*/
+        }
+
+        #cylinderHeaderText {
+            position: relative;
+            top: 6px;
+        }
+
+        #pressureDropHeaderText {
+            position: relative;
+            /*   top: 7px;*/
+        }
+    </style>
+    <style type="text/css">
+        @-moz-document url-prefix() {
+            #output ul li input {
+                letter-spacing: 1px;
+                position: relative;
+                z-index: 9999;
+                border-radius: 5px;
+                behavior: url(js/PIE.htc);
+                line-height: 30px\9;
+                text-align: right;
+                font-weight: bold;
+                padding-left: 3px;
+                padding-right: 8px;
+            }
+            #input ul li input {
+                font-size: 15px;
+                letter-spacing: 1px;
+                position: relative;
+                z-index: 9999;
+                border-radius: 5px;
+                display: inline-block;
+                margin-right: -126px;
+                behavior: url(js/PIE.htc);
+                line-height: 30px\9;
+                text-align: right;
+                font-weight: bold;
+                padding-left: 3px;
+                padding-right: 8px;
+            }
+        }
+    </style>
+    <script>
+        //var lang = "en";
+    </script>
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <!--  <script src="js/slick.js" type="text/javascript" charset="utf-8"></script> -->
+    <!--<script src="js/calculation_functions_lib.js"></script>-->
+    <script src="js/CalNew.js"></script>
+    <!--<script src="js/backward_calculation_lib.js"></script>-->
+    <script src="js/copy.js"></script>
+
+    <script src="js/ajax.js"></script>
+
+    <script src="js/email.js"></script>
+
+    <script src="js/jquery-ui.js"></script>
+    <!--  <script src="js/ZeroClipboard.js"></script> -->
+    <script src="js/jquery.stylish-select.min.js"></script>
+    <script src="js/metric_conversion.js"></script>
+    <script src="js/imperial_conversion.js"></script>
+    <script src="js/exponential.js"></script>
+    <script src="js/message.js"></script>
+    <script src="js/unit_select.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/en.js"></script>
+
+    <!-- new js files to be added -->
+    <script src="js/pressureDrop.js"></script>
+    <script src="js/piping.js"></script>
+    <script src="js/motor.js"></script>
+    <script src="js/pump.js"></script>
+    <script src="js/iframeresizer.contentwindow.min.js"></script>
+
+    <!--[if IE 7]>
+ <link rel="stylesheet" type="text/css" href="css/IE7.css" />
+
+
+<![endif]-->
+</head>
+
+<body>
+    <script>
+        // Scroll top bro
+        window.onload = function() {
+            setTimeout(function() {
+                scrollTo(0, 0);
+            }, 0);
+        }
+    </script>
+    <div id="container">
+        <!-- <div id="header">
+        <h1>Hydraulic Cylinder Calculator</h1>
+    </div> -->
+
+
+        <div class="padding-top-5" style="height:30px;">
+            <!--  <span>Preferred measurements</span>
+        <input class="Unit_selection" type="radio" name="Unit_Selction"  value="metric" checked="true" id="metricRadio" disabled /><label for="metricRadio" class="grey">Metric</label>
+        <input class="Unit_selection" type="radio" name="Unit_Selction" value="imperial" id="imperialRadio" /><label for="imperialRadio" class="grey">Inch</label>
+        <span></span>    -->
+
+            <div class="floating lefty">
+                <span class="leftSpanOverride en">Preferred measurements</span>
+            </div>
+            <div class="floating righty">
+                <div title=Metric style="border-right:none" id="measurementSelectionMetric" onclick="toggleMeasurement('metric')" class="floating mlefty measurementSelectedBtn unit_selection_new">Metric</div>
+                <div title=Inch id="measurementSelectionImperial" onclick="toggleMeasurement('imperial')" class="floating irighty measurementNonSelectedBtn unit_selection_new">Inch</div>
+            </div>
+        </div>
+        <div class="padding-top-15 topTabHeight">
+            <div id="cylinderTabId" class="topTabHeaders" title="Cylinder"><span class="divider"></span>
+                <span class="sliderImages icon-Cylinder-icon-03" id="cylinderTabImgId" src="" style="font-size:22px"></span>
+                <div class="sliderParaDiv" style="padding-top:4px;">
+                    <p id="cylinderTabIdText"></p>
+                </div>
+            </div>
+            <div id="motorTabId" class="topTabHeaders" title="Motor"><span class="divider"></span>
+                <span class="sliderImages icon-motor" src="" style="font-size:20px"></span>
+                <div class="sliderParaDiv">
+                    <p id="motorTabIdText"></p>
+                </div>
+            </div>
+            <div id="pumpTabId" class="topTabHeaders" title="Pump"><span class="divider"></span>
+                <span class="sliderImages icon-Pump" src="" style="font-size:20px"></span>
+                <div class="sliderParaDiv">
+                    <p id="pumpTabIdText"></p>
+                </div>
+            </div>
+            <div id="pressureDropTabId" class="topTabHeaders" title="Pressure Drop"><span class="divider"></span>
+                <span class="sliderImages icon-pressureDropNew" src="" style="font-size:19px"></span>
+                <div class="sliderParaDiv" style="padding-top:7px;">
+                    <p id="pressureTabIdText"></p>
+                    <p id="pressureTabIdText1"></p>
+                </div>
+            </div>
+            <div id="pipingTabId" class="topTabHeaders" title="Piping"> <span class="divider"></span>
+                <span class="sliderImages icon-Piping" src="" style="font-size:20px"></span>
+                <div class="sliderParaDiv">
+                    <p id="pipingTabIdText"></p>
+                </div><span class="divider dividerRight"></span>
+            </div>
+
+        </div>
+        <div class="padding-top-5">
+            <div style="width:94px;float:left">
+                <div id="cylinderULine"></div>
+            </div>
+            <div style="width:94px;float:left">
+                <div id="motorULine"></div>
+            </div>
+            <div style="width:94px;float:left">
+                <div id="pumpULine"></div>
+            </div>
+            <div style="width:94px;float:left">
+                <div id="pressureDropULine"></div>
+            </div>
+            <div style="width:94px;float:left">
+                <div id="pipingULine"></div>
+            </div>
+        </div>
+        <div id="main" class="margin-top-10">
+            <div id="cylinderImgHeader" class="commonHeader">
+                <div id="link">
+                    <span id="cylinderHeaderText"> </span>
+                    <a href="javascript:void(0)" onclick="changeImage()">
+                        <span class="sigmaText"><img id="formCalcImg" src="images/Formula.svg" height="14px"/></span><span class="formulaeText">Formula</span>
+                    </a>
+                    <!-- <a href="javascript:void(0)" onclick="changeImage()"><img src=images/formula_but.png  border="0" id="but_pic" width="99" height="28"></a>-->
+                </div>
+            </div>
+            <div class="imgContainer">
+                <img alt="" src="images/Main_Image.jpg" id="mainPic">
+            </div>
+
+            <form name="myForm" action="" method="POST" id="myForm">
+                <input type="hidden" name="lang" value="en" id="hiddenTxt">
+                <input type="hidden" name="typeEmail" value="cylinder" id="typeEmail">
+                <input type="hidden" name="subtypeEmail" value=1 id="subtypeEmail">
+                <!-- Cylinder code old -->
+                <div class="frmContainerie7">
+                    <!---Added only for IE 7-->
+                    <div id="input">
+                        <div class="overlayPage_updated" style="display: none;"></div>
+                        <ul style="" class="paddingBottom">
+
+                            <li><label id="lb1">Piston / Bore Diameter</label></li>
+                            <li class="pistonDia"><input onfocus="onchangeBgFocus(this)" onfocusout="changeBgFocusOut(this)" type="text" name="piston" value="" id="piston" autocomplete="off" onkeyup="calculate(event)"></li>
+                            <li class="dropdownchange"><select id="unit1" name="unit1">
+               
+                 <option value="mm">mm</option>
+                 <option value="cm">cm</option>
+                 <option value="m">m</option>
+                 <option value="in">in</option>
+                 <option value="ft">ft</option>
+                </select>
+                            </li>
+                            <div id="box">
+                                <div id="innerbox"></div><span title="Close" id="crossIcon"><img alt="" src="images/Crossbig@2x.png"></span></div>
+                            <div id="error">
+                                <div id="errorbox"></div><span title="Close" id="crossIcon4"><img alt="" src="images/Crossbig@2x.png"></span></div>
+                        </ul>
+                        <ul class="paddingBottom">
+                            <li><label id="lb2">Rod Diameter</label></li>
+                            <li class="rodDia"><input onfocus="onchangeBgFocus(this)" onfocusout="changeBgFocusOut(this)" type="text" name="rod" value="" id="rod" class="decimal" autocomplete="off" onkeyup="calculate(event)">
+                                <div id="msg2"></div>
+                                <div id="val"></div>
+                            </li>
+                            <li class="dropdownchange"><select id="unit2" name="unit2">
+                   
+                 <option value="mm">mm</option>
+                 <option value="cm">cm</option>
+                 <option value="m">m</option>
+                 <option value="in">in</option>
+                 <option value="ft">ft</option>
+                </select>
+                            </li>
+                            <div id="box2">
+                                <div id="innerbox2"></div><span title="Close" id="crossIcon2"><img alt="" src="images/Crossbig@2x.png"></span></div>
+                            <div id="error2">
+                                <div id="errorbox2"></div><span title="Close" id="crossIcon5"><img alt="" src="images/Crossbig@2x.png"></span></div>
+                            <div id="error31">
+                                <div id="errorbox31"></div><span title="Close" id="crossIcon61"><img alt="" src="images/Crossbig@2x.png"></span></div>
+                        </ul>
+                        <ul class="paddingBottom">
+                            <li><label id="lb3">Stroke</label></li>
+                            <li class="strokeField"><input onfocus="onchangeBgFocus(this)" onfocusout="changeBgFocusOut(this)" type="text" name="stroke" value="" id="stroke" autocomplete="off" onkeyup="calculate(event)">
+                                <div id="msg3"></div>
+                            </li>
+                            <li class="dropdownchange"> <select id="unit3" name="unit3">
+                    
+                 <option value="mm">mm</option>
+                 <option value="cm">cm</option>
+                 <option value="m">m</option>
+                 <option value="in">in</option>
+                 <option value="ft">ft</option>
+                </select>
+                            </li>
+                            <div id="box3">
+                                <div id="innerbox3"></div><span title="Close" id="crossIcon3"><img alt="" src="images/Crossbig@2x.png"></span></div>
+                            <div id="error3">
+                                <div id="errorbox3"></div><span title="Close" id="crossIcon6"><img alt="" src="images/Crossbig@2x.png"></span></div>
+                        </ul>
+                        <ul class="paddingBottom">
+                            <li><label id="lb4">Pressure</label></li>
+                            <li class="pressureField"><input onfocus="onchangeBgFocus(this)" onfocusout="changeBgFocusOut(this)" type="text" name="preassure" value="" id="preassure" autocomplete="off" onkeyup="calculate(event)">
+                                <div id="msg4"></div>
+                            </li>
+                            <li class="dropdownchangePressure"> <select id="unit4" name="unit4">
+                   
+                 <option value="bar" >bar</option>
+                 <option value="P" >P</option>
+                 <option value="MPa" >MPa</option>
+                 <option value="psi">psi</option>
+                </select>
+                            </li>
+                            <div id="error4">
+                                <div id="errorbox4"></div><span title="Close" id="crossIcon7"><img alt="" src="images/Crossbig@2x.png"></span></div>
+                        </ul>
+                        <ul class="last paddingBottom">
+                            <li><label id="lb5">Oil Flow</label></li>
+                            <li class="oilField"><input onfocus="onchangeBgFocus(this)" onfocusout="changeBgFocusOut(this)" type="text" name="oilflow" value="" id="oilflow" autocomplete="off" onkeyup="calculate(event)">
+                                <div id="msg5"></div>
+                            </li>
+                            <li> <select id="unit5" name="unit5">
+                    
+                 <option value="lpm">lpm</option>
+                 <option value="m3/min">m&sup3;/min</option>
+                 <option value="cm3/min">cm&sup3;/min</option>
+                 <option value="gpm">gpm</option>
+                 <option value="in3/min">in&sup3;/min</option>
+             
+                </select>
+                            </li>
+                            <div id="error5">
+                                <div id="errorbox5"></div><span title="Close" id="crossIcon8"><img alt="" src="images/Crossbig@2x.png"></span></div>
+                        </ul>
+
+
+                    </div>
+
+                    <div class="ioDividerOld">
+                        <div class="ioInnerDiv ioInnerDivOld"></div>
+                    </div>
+
+                    <div id="output">
+                        <div class="childContainer">
+                            <ul style="margin-bottom: 9px;margin-top: 13px">
+                                <li id="li1" class="en" style="margin-right: -13px;">Bore Side
+                                    <div class="boreSideULine"></div>
+                                </li>
+                                <li id="li2" class="en">Rod Side
+                                    <div class="boreSideULine"></div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <ul class="fieldArea">
+                            <li id="lb6">
+                                <label>Area</label>
+                            </li>
+                            <li>
+                                <input style="left: 15px;position: relative;" type="text" class="outputFields" name="piston_area" required="true" value="" id="piston_area" tabindex="-1" DISABLED>
+                            </li>
+                            <li style="margin-left:15px !important"><input type="text" class="outputFields_1" name="rod_area" required="true" value="" id="rod_area" tabindex="-1" DISABLED>
+                            </li>
+                            <li style="margin-left:15px !important" class="dropdownchangeArea">
+                                <select id="unit11" name="unit11">
+                             <option value="cm2">cm&sup2;</option>
+                             <option value="m2">m&sup2;</option>
+                             <option value="mm2">mm&sup2;</option>
+                             <option value="in2">in&sup2;</option>
+                             <option value="ft2">ft&sup2;</option>
+                    </select>
+                            </li>
+                        </ul>
+                        <ul class="fieldArea">
+                            <li id="lb7"><label>Volume</label></li>
+                            <li><input style="left: 15px;position: relative;" type="text" class="outputFields" name="piston_volume" required="true" value="" id="piston_volume" tabindex="-1" DISABLED></li>
+                            <li style="margin-left:15px !important"><input type="text" class="outputFields_1" name="rod_volume" required="true" value="" id="rod_volume" tabindex="-1" DISABLED></li>
+                            <li style="margin-left:15px !important" class="dropdownchangeVol">
+                                <select id="unit12" name="unit12">
+                                    
+                                 <option value="l">l</option>
+                                 <option value="cm3">cm&sup3;</option>
+                                 <option value="m3">m&sup3;</option>
+                                 <option value="in3">in&sup3;</option>
+                                 <option value="ft3">ft&sup3;</option>
+                                 <option value="gal">gal</option>
+                             
+                        </select>
+                            </li>
+                        </ul>
+                        <ul class="fieldArea">
+                            <li id="lb8"><label>Force</label></li>
+                            <li><input onfocus="onchangeBgFocus(this)" onfocusout="changeBgFocusOut(this)" style="left: 15px;position: relative;" type="text" name="piston_force" value="" id="piston_force" class="decimal outputFields" autocomplete="off" onkeyup="calculate(event)">
+                                <div
+                                    id="msg6">
+                            </li>
+                            <li style="margin-left:15px !important"><input onfocus="onchangeBgFocus(this)" onfocusout="changeBgFocusOut(this)" type="text" name="rod_force" value="" id="rod_force" class="decimal outputFields_1" autocomplete="off" onkeyup="calculate(event)">
+                                <div id="msg7">
+                            </li>
+                            <li style="margin-left:15px !important" class="dropDownForce">
+                                <select id="unit13" name="unit13">
+                                     <option value="kN">kN</option>
+                                     <option value="N">N</option>
+                                     <option value="dyn">dyn</option>
+                                     <option value="kgf">kgf</option>
+                                     <option value="lbf">lbf</option>
+                                     <option value="pdl">pdl</option>
+                            </select>
+                            </li>
+                            <div id="error6">
+                                <div id="errorbox6"></div><span title="Close" id="crossIcon9"><img alt="" src="images/Crossbig@2x.png"></span></div>
+                        </ul>
+
+
+                        <ul class="fieldArea">
+                            <li id="lb9"><label>Time</label></li>
+                            <li><input onfocus="onchangeBgFocus(this)" onfocusout="changeBgFocusOut(this)" style="left: 15px;position: relative;" type="text" name="piston_time" value="" id="piston_time" class="decimal outputFields" autocomplete="off" onkeyup="calculate(event)">
+                                <div
+                                    id="msg8">
+                            </li>
+                            <li style="margin-left:15px !important"><input onfocus="onchangeBgFocus(this)" onfocusout="changeBgFocusOut(this)" type="text" name="rod_time" value="" id="rod_time" class="decimal outputFields_1" autocomplete="off" onkeyup="calculate(event)">
+                                <div id="msg9">
+                            </li>
+                            <li style="margin-left:15px !important" class="dropDownTimeIE7">
+                                <select id="unit14" name="unit14">
+                                    
+                                 <option value="sec">sec</option>
+                                 <option value="min">min</option>
+                                 <option value="ms">ms</option>
+                                 </select>
+                            </li>
+                            <div id="error7">
+                                <div id="errorbox7"></div><span title="Close" id="crossIcon10"><img alt="" src="images/Crossbig@2x.png"></span></div>
+                        </ul>
+
+                        <ul class="fieldArea">
+                            <li id="lb10"><label>Velocity</label></li>
+                            <li><input onfocus="onchangeBgFocus(this)" onfocusout="changeBgFocusOut(this)" style="left: 15px;position: relative;" type="text" name="piston_velocity" value="" id="piston_velocity" class="decimal outputFields" autocomplete="off"
+                                    onkeyup="calculate(event)">
+                                <div id="msg10">
+                            </li>
+                            <li style="margin-left:15px !important"><input onfocus="onchangeBgFocus(this)" onfocusout="changeBgFocusOut(this)" type="text" name="rod_velocity" value="" id="rod_velocity" class="decimal outputFields_1" autocomplete="off" onkeyup="calculate(event)">
+                                <div id="msg11">
+                            </li>
+                            <li style="margin-left:15px !important" class="dropDownVelocityIE7">
+                                <select id="unit15" name="unit15">
+                                    
+                                 <option value="m/s">m/s</option>
+                                 <option value="cm/s">cm/s</option>
+                                 <option value="in/s">in/s</option>
+                                 <option value="ft/s">ft/s</option>
+                                 </select>
+                            </li>
+                            <div id="error8">
+                                <div id="errorbox8"></div><span title="Close" id="crossIcon11"><img alt="" src="images/Crossbig@2x.png"></span></div>
+                        </ul>
+
+                        <ul class="fieldArea">
+                            <li id="lb11"><label>Outflow</label></li>
+                            <li><input style="left: 15px;position: relative;" type="text" class="outputFields" name="piston_outflow" required="true" value="" id="piston_outflow" tabindex="-1" DISABLED></li>
+                            <li style="margin-left:15px !important"><input type="text" class="outputFields_1" name="rod_outflow" required="true" value="" id="rod_outflow" tabindex="-1" DISABLED></li>
+                            <li style="margin-left:15px !important" class="dropDownOutflowIE7">
+                                <select id="unit16" name="unit16">
+                                 <option value="lpm">lpm</option>
+                                 <option value="m3/min" id="otflw2">m&sup3;/min</option>
+                                 <option value="cm3/min" id="otflw3">cm&sup3;/min</option>
+                                 <option value="gpm">gpm</option>
+                                 <option value="in3/min" id="otflw1">in&sup3;/min</option>
+                        </select>
+                            </li>
+                        </ul>
+
+                        <ul class="fieldArea" style="padding-bottom:8px">
+                            <li id="lb12"><label>Ratio</label></li>
+                            <li><input style="left: 15px;position: relative;" type="text" class="outputFields" name="ratio" required="true" value="" id="ratio" tabindex="-1" DISABLED></li>
+                            <li style="margin-left:15px !important">
+                                <div id="r"></div>
+                            </li>
+                        </ul>
+                        <div style="clear:both;"></div>
+                        </div>
+                        <div class="buttonContainer">
+                            <div class="centerAlignButton">
+                                <div style="margin-left:68px " class="gradientButton copyButton_1 btnContainerOverride">
+                                    <input class="copyButton" type="button" name="copy" title="Copy" value="Copy" id="copy">
+                                </div>
+                                <div class="gradientButton resetButton_1 btnContainerOverride">
+                                    <input type="button" class="resetButton" id="clear" title="Reset" value="Reset">
+                                </div>
+                                <div style="margin-right:34px " class="gradientButton btnContainerOverride">
+                                    <input class="emailButton" type="button" name="email" title="Email" value="Email" id="email">
+                                </div>
+                            </div>
+
+                        </div>
+                        </div>
+                        <!---Added only for IE 7-->
+                        <!--Email Template
+        ==================-->
+
+
+                        <div id="outer" style="display:none;">
+
+                            <!--Alert Messages
+            ==================-->
+                            <div class="overlayPage_updatedN"></div>
+                            <div id="email_header">
+                                <div class="inline-block emailTopHeaderTxtOverride"> Send email</div>
+                                <div class="inline-block pull-right close_email"><img title="Close" class="emailBigCross" src="images/Crossbig@2x.png"></div>
+                            </div>
+                            <div id='mail_success' class='success_email'>Email sent successfully</div>
+                            <div id='mail_fail' class='error_email'>
+                                <!-- <img src='images/error.png'> -->Mail not sent, Please try again later.</div>
+                            <div id="inner">
+
+                                <table id="emailform">
+                                    <tr class="row">
+                                        <td class="col-md-4 emailLabel">To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td class="emailText col-md-8"><input onfocus="toEmailFieldInputFocus(this)" onfocusout="toEmailFieldValidator(this)" oninput="validateEmailAddressNew('cylinder','to',this)" type="text" id="to" name="to" autocomplete="off" tabindex="-1" />
+                                            <!--span id="cross"><img alt="" src="images/cross_button.png"></span-->
+                                            <!--span id="pic"><img alt="" src="images/tick.png"></span--></td>
+                                    </tr>
+                                    <tr class="row">
+                                        <td class="col-md-4 emailLabel">CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td class="emailText col-md-8 padding5"><input onfocus="toEmailFieldInputFocus(this)" onfocusout="toEmailFieldValidator(this)" oninput="validateEmailAddressNew('cylinder','to',this)" tabindex="-1" type="text" id="cc" name="cc" autocomplete="off" />
+                                            <!--span id="cross2"><img alt="" src="images/cross_button.png"></span-->
+                                            <!--span id="pic2"><img alt="" src="images/tick.png"></span--></td>
+                                    </tr>
+                                    <tr class="row">
+                                        <td class="col-md-4 emailLabel">Subject&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td class="emailText col-md-8 padding5"><input tabindex="-1" type="text" id="subject" name="subject" value=Hydraulic System Calculator /></td>
+                                    </tr>
+
+
+                                    <tr>
+
+                                        <td>
+                                            <div id="message" name="message">
+
+                                                <div id="hdr">
+                                                    <div id="hdrtxt">
+                                                        <h3>Cylinder Calculator</h3>
+                                                    </div>
+                                                    <div id="hdrlogo"><img src="images/trelleborg-logo.png" style="height:35px;top:-1px;position: relative;"></div>
+                                                </div>
+                                                <div class="contents">
+                                                    <div class="lbls lblsjp">
+                                                        <div class="dv1" style="padding-top:9px">Piston / Bore Diameter</div>
+                                                        <div class="dv2">
+                                                            <div id="dia1"></div>
+                                                        </div>
+                                                        <div class="dv3">
+                                                            <div id="u1"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="lbls lblsjp">
+                                                        <div class="dv1">Rod Diameter</div>
+                                                        <div class="dv2">
+                                                            <div id="dia2"></div>
+                                                        </div>
+                                                        <div class="dv3">
+                                                            <div id="u2"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="lbls lblsjp">
+                                                        <div class="dv1">Stroke</div>
+                                                        <div class="dv2">
+                                                            <div id="str"></div>
+                                                        </div>
+                                                        <div class="dv3">
+                                                            <div id="u3"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="lbls lblsjp">
+                                                        <div class="dv1">Pressure</div>
+                                                        <div class="dv2">
+                                                            <div id="pr"></div>
+                                                        </div>
+                                                        <div class="dv3">
+                                                            <div id="u4"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="lbls lblsjp" style="border-bottom:1px solid #F1F1F1;">
+                                                        <div class="dv1">Oil Flow</div>
+                                                        <div class="dv2">
+                                                            <div id="oil"></div>
+                                                        </div>
+                                                        <div class="dv3">
+                                                            <div id="u5"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="break">
+                                                        <div class="emailHeadingLeftLeft">&nbsp;</div>
+                                                        <div class="emailHeadingleft">Bore Side</div>
+                                                        <div class="emailHeadingright">Rod Side</div>
+                                                    </div>
+                                                    <div class="clearboth"></div>
+
+                                                    <div class="lbls lblsjp">
+                                                        <div class="dv1">Area</div>
+                                                        <div class="dv4">
+                                                            <div id="pisa"></div>
+                                                            <!--div id="val12"></div-->
+                                                        </div>
+                                                        <div class="dv5">
+                                                            <div id="roda"></div>
+                                                            <!--div id="val14"></div-->
+                                                        </div>
+                                                        <div class="dv3">
+                                                            <div id="u11"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="lbls lblsjp">
+                                                        <div class="dv1">Volume</div>
+                                                        <div class="dv4">
+                                                            <div id="pisv"></div>
+                                                            <!--div id="val17"></div-->
+                                                        </div>
+                                                        <div class="dv5">
+                                                            <div id="rodv"></div>
+                                                            <!--div id="val19"></div-->
+                                                        </div>
+                                                        <div class="dv3">
+                                                            <div id="u12"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="lbls lblsjp">
+                                                        <div class="dv1">Force</div>
+                                                        <div class="dv4">
+                                                            <div id="pisf"></div>
+                                                            <!--div id="val17"></div-->
+                                                        </div>
+                                                        <div class="dv5">
+                                                            <div id="rodf"></div>
+                                                            <!--div id="val19"></div-->
+                                                        </div>
+                                                        <div class="dv3">
+                                                            <div id="u13"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="lbls lblsjp">
+                                                        <div class="dv1">Time</div>
+                                                        <div class="dv4">
+                                                            <div id="pist"></div>
+                                                            <!--div id="val17"></div-->
+                                                        </div>
+                                                        <div class="dv5">
+                                                            <div id="rodt"></div>
+                                                            <!--div id="val19"></div-->
+                                                        </div>
+                                                        <div class="dv3">
+                                                            <div id="u14"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="lbls lblsjp">
+                                                        <div class="dv1">Velocity</div>
+                                                        <div class="dv4">
+                                                            <div id="pisve"></div>
+                                                            <!--div id="val17"></div-->
+                                                        </div>
+                                                        <div class="dv5">
+                                                            <div id="rodve"></div>
+                                                            <!--div id="val19"></div-->
+                                                        </div>
+                                                        <div class="dv3">
+                                                            <div id="u15"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="lbls lblsjp">
+                                                        <div class="dv1">Outflow</div>
+                                                        <div class="dv4">
+                                                            <div id="piso"></div>
+                                                            <!--div id="val17"></div-->
+                                                        </div>
+                                                        <div class="dv5">
+                                                            <div id="rodo"></div>
+                                                            <!--div id="val19"></div-->
+                                                        </div>
+                                                        <div class="dv3">
+                                                            <div id="u16"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="lbls lblsjp">
+                                                        <div class="dv1">Ratio</div>
+                                                        <div class="dv4">
+                                                            <div id="rat"></div>
+                                                            <!--div id="val17"></div-->
+                                                        </div>
+                                                        <div class="dv5">
+                                                            <div id="val18"></div>
+                                                            <!--div id="val19"></div-->
+                                                        </div>
+                                                        <div class="dv3">
+                                                            <div id="val20"></div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div id="disclaimer">
+                                                        <label style="font-weight: bold;float: left;padding: 10px;margin-left: -11px;">Disclaimer</label>
+                                                        <p id="txtf" style="float: left;margin-left: -1px;">
+                                                            The results of this application are based on standard Hydraulic System Calculator Formulas. Although every effort has been made to ensure the accuracy of the information within this application, it is your responsibility to verify the accuracy of any
+                                                            and all data represented. Trelleborg Sealing Solutions makes no representations or warranties of any kind, expressed or implied, of the completeness, accuracy, reliability or suitability of the
+                                                            information provided by this application. Any reliance placed on the information obtained through this application is strictly at your own risk.</p>
+                                                        <p class="emailTxtbtm" style="clear:both;float: left;margin-top: 0px;margin-left: -1px; text-align: left;margin-bottom: 0px;">The information provided is in compliance with ISO 3320, ISO 3321 & ISO 4393. </p>
+
+                                                    </div>
+
+                                                    <div id="footer" style="float:left;">
+                                                        <p class="copyright">&#169;&nbsp;Trelleborg Sealing Solutions. All rights reserved.</p>
+                                                    </div>
+
+
+                                                </div>
+                                        </td>
+                                    </tr>
+
+                                </table>
+
+                                <div id="emailbutton">
+                                    <div id="emailbox" class="emailBoxMotor">
+                                        <span style="position: relative;top:-1px" class="gradientButton_email">
+                            <input title="Cancel" type="submit" id="cancel" name="cancel" value=Cancel></button></span>
+                                        <span style="position: relative;" class="gradientButton_email">
+                            <input title="Send" type="button" id="send" name="send" value=Send></button></span>
+
+                                    </div>
+                                </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearFix"></div>
+            </form>
+            <!-- Cylinder code end -->
+            <!-- Motor Code start -->
+            <div id="motorMain" class="margin-top-10" style="display: none;">
+                <div id="motorImgHeader" class="commonHeader">
+                    <div id="link">
+                        <span id="motorHeaderText">Calculate </span>
+                        <li class="dropdownchange hDDOverride" style="display:inline">
+                            <select id="motorHeaderDD" name="motorHeaderDD" onchange="motorDDChange()">
+                       <option value=1>Flow rate</option>
+                       <option value=2>Pressure</option>
+                       <option value=3>Displacement</option>
+                       <option value=4>Speed</option>
+                       <option value=5>Torque</option>
+                       <option value=6>Power</option>
+                  </select>
+                        </li>
+                        <!-- <a href="javascript:void(0)" onclick="changeImageNew('motor','flow_rate')"><img src=images/formula_but.png  border="0" id="but_pic" width="99" height="28"></a> -->
+                        <a href="javascript:void(0)" onclick="changeImage()">
+                        <span class="sigmaText"><img id="formCalcImg" src="images/Formula.svg" height="14px"/></span><span class="formulaeText">Formula</span>
+                    </a>
+                    </div>
+                </div>
+                <div class="imgContainerM" style="display:none">
+                    <img alt="" src="" id="mainPicMotor">
+                </div>
+                <form name="myFormMotorE" id="myFormMotorE" style="display:none">
+                    <input type="hidden" name="lang" value="en" id="hiddenTxt">
+                    <input type="hidden" name="typeEmail" value="motor" id="typeEmail">
+                    <input type="hidden" name="subtypeEmail" class="subtypeEmailMotor" value=1 id="subtypeEmail">
+                </form>
+                <form name="myFormMotor" action="" method="POST" id="myFormMotor">
+                    <input type="hidden" name="lang" value="en" id="hiddenTxt">
+                    <div class="frmContainerie7 frmContainerie7New">
+                        <div id="input" class="inputMotorX">
+                        </div>
+                    </div>
+                    <div class="buttonContainerNew">
+                        <div onclick="copyCalc('motor')" style="margin-left:68px;" title="Copy" class="utilityButtons utilityBtnDisabled" id="uBtnCopy">
+                            <input class="utilityBtnInput" type="button" name="newCopy" value="Copy" id="newCopy">
+                        </div>
+                        <div onclick="resetCalc('motor')" title="Reset" class="utilityButtons utilityBtnDisabled" id="uBtnReset">
+                            <input type="button" class="utilityBtnInput" id="newClear" value="Reset">
+                        </div>
+                        <div onclick="emailCalc('motor')" title="Email" style="margin-right:34px;" class="utilityButtons utilityBtnDisabled" id="uBtnEmail">
+                            <input class="utilityBtnInput" type="button" name="newEmail" value="Email" id="newEmail">
+                        </div>
+                    </div>
+                    <div class="outerEmailMotor" style="display:none;">
+
+                        <!--Alert Messages
+                ==================-->
+                        <div class="overlayPage_updatedN"></div>
+                        <div id="email_header">
+                            <div class="inline-block emailTopHeaderTxtOverride"> Send email</div>
+                            <div class="inline-block pull-right close_email"><img title="Close" class="emailBigCross" src="images/Crossbig@2x.png"></div>
+                        </div>
+                        <div id='mail_successMotor' class='success_email'>Email sent successfully</div>
+                        <div id='mail_failMotor' class='error_email'><img src='images/error.png'>Mail not sent, Please try again later.</div>
+                        <div id="inner">
+
+                            <table id="emailform">
+                                <tr class="row">
+                                    <td class="col-md-4 emailLabel">To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <td class="emailText col-md-8"><input onfocus="toEmailFieldInputFocus(this)" onfocusout="toEmailFieldValidator(this)" oninput="validateEmailAddressNew('motor','to')" type="text" id="toM" name="toM" autocomplete="off" tabindex="-1" />
+                                        <!--span id="cross"><img alt="" src="images/cross_button.png"></span-->
+                                        <!--span id="pic"><img alt="" src="images/tick.png"></span--></td>
+                                </tr>
+                                <tr class="row">
+                                    <td class="col-md-4 emailLabel">CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <td class="emailText col-md-8 padding5"><input onfocus="toEmailFieldInputFocus(this)" onfocusout="toEmailFieldValidator(this)" oninput="validateEmailAddressNew('motor','cc')" tabindex="-1" type="text" id="ccM" name="cc" autocomplete="off" />
+                                        <!--span id="cross2"><img alt="" src="images/cross_button.png"></span-->
+                                        <!--span id="pic2"><img alt="" src="images/tick.png"></span--></td>
+                                </tr>
+                                <tr class="row">
+                                    <td class="col-md-4 emailLabel">Subject&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <td class="emailText col-md-8 padding5"><input tabindex="-1" type="text" id="subjectM" name="subjectM" value=Hydraulic System Calculator /></td>
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        <div id="messageMotor" name="messageMotor" class="messageMotorEmail">
+
+                                            <div id="hdr">
+                                                <div id="hdrtxt">
+                                                    <h3 id="motorEmailHeader">
+                                                        <!-- Cylinder Calculator -->
+                                                    </h3>
+                                                </div>
+                                                <div id="hdrlogo"><img src="images/trelleborg-logo.png" style="height:35px;top:-1px;position: relative;"></div>
+                                            </div>
+                                            <div class="contentsNew">
+                                                <div class="lbls" id="mInp1">
+                                                    <div class="dv1" id="mInplbl1"></div>
+                                                    <div class="dv2">
+                                                        <div id="mInpVal1"></div>
+                                                    </div>
+                                                    <div class="dv3">
+                                                        <div id="mInpUnit1"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="lbls" id="mInp2">
+                                                    <div class="dv1" id="mInplbl2"></div>
+                                                    <div class="dv2">
+                                                        <div id="mInpVal2"></div>
+                                                    </div>
+                                                    <div class="dv3">
+                                                        <div id="mInpUnit2"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="lbls" id="mInp3">
+                                                    <div class="dv1" id="mInplbl3"></div>
+                                                    <div class="dv2">
+                                                        <div id="mInpVal3"></div>
+                                                    </div>
+                                                    <div class="dv3">
+                                                        <div id="mInpUnit3"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="lbls" id="mInp4">
+                                                    <div class="dv1" id="mInplbl4"></div>
+                                                    <div class="dv2">
+                                                        <div id="mInpVal4"></div>
+                                                    </div>
+                                                    <div class="dv3">
+                                                        <div id="mInpUnit4"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="lbls" id="mInp5">
+                                                    <div class="dv1" id="mInplbl5"></div>
+                                                    <div class="dv2">
+                                                        <div id="mInpVal5"></div>
+                                                    </div>
+                                                    <div class="dv3">
+                                                        <div id="mInpUnit5"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="lbls" id="mInp6">
+                                                    <div class="dv1" id="mInplbl6"></div>
+                                                    <div class="dv2">
+                                                        <div id="mInpVal6"></div>
+                                                    </div>
+                                                    <div class="dv3">
+                                                        <div id="mInpUnit6"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="lbls" id="mOut1">
+                                                    <div class="dv1" id="mOutlbl1"></div>
+                                                    <div class="dv2">
+                                                        <div id="mOutVal1"></div>
+                                                    </div>
+                                                    <div class="dv3">
+                                                        <div id="mOutUnit1"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div id="disclaimer">
+                                                    <label style="font-weight: bold;float: left;padding: 10px;margin-left: -11px;">Disclaimer</label>
+                                                    <p id="txtf" style="float: left;margin-left: -1px;">
+                                                        The results of this application are based on standard Hydraulic System Calculator Formulas. Although every effort has been made to ensure the accuracy of the information within this application, it is your responsibility to verify the accuracy of any
+                                                        and all data represented. Trelleborg Sealing Solutions makes no representations or warranties of any kind, expressed or implied, of the completeness, accuracy, reliability or suitability of the information
+                                                        provided by this application. Any reliance placed on the information obtained through this application is strictly at your own risk.</p>
+                                                    <p
+                                                        class="emailTxtbtm" style="clear:both;float: left;margin-top: 0px;margin-left: -1px; text-align: left;margin-bottom: 0px;">The information provided is in compliance with ISO 3320, ISO 3321 & ISO 4393. </p>
+
+                                                </div>
+
+                                                <div id="footer" style="float:left;">
+                                                    <p class="copyright">&#169;&nbsp;Trelleborg Sealing Solutions. All rights reserved.</p>
+                                                </div>
+                                            </div>
+                                    </td>
+                                </tr>
+
+                            </table>
+                            <div id="emailbutton">
+                                <div id="emailbox" class="emailBoxMotor">
+                                    <span style="position: relative;top:-1px" class="gradientButton_email">
+                                <input title="Cancel" class="cancelNewM" type="button" onclick="cancelEmailNew('motor')" id="cancelNew" name="cancel" value=Cancel></button></span>
+                                    <span style="position: relative;top:-1px" class="gradientButton_email">
+                                <input title="Send" type="button" onclick="sendEmailNew('motor')" id="sendNewM" name="send" value=Send></button></span>
+                                </div>
+                            </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearFix"></div>
+                </form>
+                <!-- Motor Code end -->
+                <!-- Pump Code start -->
+                <div id="pumpMain" class="margin-top-10" style="display: none;">
+                    <div id="pumpImgHeader" class="commonHeader">
+                        <div id="link">
+                            <span id="pumpHeaderText">Calculate </span>
+                            <li class="dropdownchange hDDOverride" style="display:inline"><select id="pumpHeaderDD" name="pumpHeaderDD" onchange="pumpDDChange()">
+               
+                 <option value=1>Flow rate</option>
+                 <option value=2>Displacement</option>
+                 <option value=3>Electric motor power</option>
+                 <option value=4>Total efficiency</option>
+                </select>
+                            </li>
+                            <!-- <a href="javascript:void(0)" onclick="changeImageNew('pump','flow_rate')"><img src=images/formula_but.png  border="0" id="but_pic" width="99" height="28"></a> -->
+                            <a href="javascript:void(0)" onclick="changeImage()">
+                        <span class="sigmaText"><img id="formCalcImg" src="images/Formula.svg" height="14px"/></span><span class="formulaeText">Formula</span>
+                    </a>
+                        </div>
+                    </div>
+                    <div class="imgContainerP" style="display:none">
+                        <img alt="" src="" id="mainPicPump">
+                    </div>
+                    <form name="myFormPumpE" id="myFormPumpE" style="display:none">
+                        <input type="hidden" name="lang" value="en" id="hiddenTxt">
+                        <input type="hidden" name="typeEmail" value="pump" id="typeEmail">
+                        <input type="hidden" name="subtypeEmail" class="subtypeEmailPump" value=1 id="subtypeEmail">
+                    </form>
+
+                    <form name="myFormPump" action="" method="POST" id="myFormPump">
+                        <input type="hidden" name="lang" value="en" id="hiddenTxt">
+
+                        <div class="frmContainerie7 frmContainerie7New">
+                            <div id="input" class="inputPumpX">
+
+                            </div>
+                        </div>
+                        <div class="buttonContainerNew">
+                            <div onclick="copyCalc('pump')" title="Copy" style="margin-left:68px" class="utilityButtons utilityBtnDisabled" id="uBtnCopyP">
+                                <input class="utilityBtnInput" type="button" name="newCopy" value="Copy" id="newCopyP">
+                            </div>
+                            <div title="Reset" onclick="resetCalc('pump')" class="utilityButtons utilityBtnDisabled" id="uBtnResetP">
+                                <input type="button" class="utilityBtnInput" id="newClearP" value="Reset">
+                            </div>
+                            <div title="Email" onclick="emailCalc('pump')" style="margin-right:34px;" class="utilityButtons utilityBtnDisabled" id="uBtnEmailP">
+                                <input class="utilityBtnInput" type="button" name="newEmail" value="Email" id="newEmailP">
+                            </div>
+                        </div>
+
+                        <div class="outerEmailPump" style="display:none;">
+
+                            <!--Alert Messages
+            ==================-->
+                            <div class="overlayPage_updatedN"></div>
+                            <div id="email_header">
+                                <div class="inline-block emailTopHeaderTxtOverride">Send email</div>
+                                <div class="inline-block pull-right close_email"><img title="Close" class="emailBigCross" src="images/Crossbig@2x.png"></div>
+                            </div>
+                            <div id='mail_successPump' class='success_email'>Email sent successfully</div>
+                            <div id='mail_failPump' class='error_email'><img src='images/error.png'>Mail not sent, Please try again later.</div>
+                            <div id="inner">
+
+                                <table id="emailform">
+                                    <tr class="row">
+                                        <td class="col-md-4 emailLabel">To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td class="emailText col-md-8"><input onfocus="toEmailFieldInputFocus(this)" onfocusout="toEmailFieldValidator(this)" oninput="validateEmailAddressNew('pump','to')" type="text" id="toP" name="toP" autocomplete="off" tabindex="-1" />
+                                            <!--span id="cross"><img alt="" src="images/cross_button.png"></span-->
+                                            <!--span id="pic"><img alt="" src="images/tick.png"></span--></td>
+                                    </tr>
+                                    <tr class="row">
+                                        <td class="col-md-4 emailLabel">CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td class="emailText col-md-8 padding5"><input onfocus="toEmailFieldInputFocus(this)" onfocusout="toEmailFieldValidator(this)" oninput="validateEmailAddressNew('pump','cc')" tabindex="-1" type="text" id="ccP" name="cc" autocomplete="off" />
+                                            <!--span id="cross2"><img alt="" src="images/cross_button.png"></span-->
+                                            <!--span id="pic2"><img alt="" src="images/tick.png"></span--></td>
+                                    </tr>
+                                    <tr class="row">
+                                        <td class="col-md-4 emailLabel">Subject&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td class="emailText col-md-8 padding5"><input tabindex="-1" type="text" id="subjectP" name="subjectP" value=Hydraulic System Calculator /></td>
+                                    </tr>
+
+
+                                    <tr>
+
+                                        <td>
+                                            <div id="messageMotor" name="messageMotor" class="messagePumpEmail">
+
+                                                <div id="hdr">
+                                                    <div id="hdrtxt">
+                                                        <h3 id="pumpEmailHeader">
+                                                            <!-- Cylinder Calculator -->
+                                                        </h3>
+                                                    </div>
+                                                    <div id="hdrlogo"><img src="images/trelleborg-logo.png" style="height:35px;top:-1px;position: relative;"></div>
+                                                </div>
+                                                <div class="contentsNew">
+                                                    <div class="lbls" id="pInp1">
+                                                        <div class="dv1" id="pInplbl1"></div>
+                                                        <div class="dv2">
+                                                            <div id="pInpVal1"></div>
+                                                        </div>
+                                                        <div class="dv3">
+                                                            <div id="pInpUnit1"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="lbls" id="pInp2">
+                                                        <div class="dv1" id="pInplbl2"></div>
+                                                        <div class="dv2">
+                                                            <div id="pInpVal2"></div>
+                                                        </div>
+                                                        <div class="dv3">
+                                                            <div id="pInpUnit2"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="lbls" id="pInp3">
+                                                        <div class="dv1" id="pInplbl3"></div>
+                                                        <div class="dv2">
+                                                            <div id="pInpVal3"></div>
+                                                        </div>
+                                                        <div class="dv3">
+                                                            <div id="pInpUnit3"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="lbls" id="pInp4">
+                                                        <div class="dv1" id="pInplbl4"></div>
+                                                        <div class="dv2">
+                                                            <div id="pInpVal4"></div>
+                                                        </div>
+                                                        <div class="dv3">
+                                                            <div id="pInpUnit4"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="lbls" id="pInp5">
+                                                        <div class="dv1" id="pInplbl5"></div>
+                                                        <div class="dv2">
+                                                            <div id="pInpVal5"></div>
+                                                        </div>
+                                                        <div class="dv3">
+                                                            <div id="pInpUnit5"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="lbls" id="pInp6">
+                                                        <div class="dv1" id="pInplbl6"></div>
+                                                        <div class="dv2">
+                                                            <div id="pInpVal6"></div>
+                                                        </div>
+                                                        <div class="dv3">
+                                                            <div id="pInpUnit6"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="lbls" id="pOut1">
+                                                        <div class="dv1" id="pOutlbl1"></div>
+                                                        <div class="dv2">
+                                                            <div id="pOutVal1"></div>
+                                                        </div>
+                                                        <div class="dv3">
+                                                            <div id="pOutUnit1"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div id="disclaimer">
+                                                        <label style="font-weight: bold;float: left;padding: 10px;margin-left: -11px;">Disclaimer</label>
+                                                        <p id="txtf" style="float: left;margin-left: -1px;">
+                                                            The results of this application are based on standard Hydraulic System Calculator Formulas. Although every effort has been made to ensure the accuracy of the information within this application, it is your responsibility to verify the accuracy of any
+                                                            and all data represented. Trelleborg Sealing Solutions makes no representations or warranties of any kind, expressed or implied, of the completeness, accuracy, reliability or suitability of the
+                                                            information provided by this application. Any reliance placed on the information obtained through this application is strictly at your own risk.</p>
+                                                        <p class="emailTxtbtm" style="clear:both;float: left;margin-top: 0px;margin-left: -1px; text-align: left;margin-bottom: 0px;">The information provided is in compliance with ISO 3320, ISO 3321 & ISO 4393. </p>
+
+                                                    </div>
+
+                                                    <div id="footer" style="float:left;">
+                                                        <p class="copyright">&#169;&nbsp;Trelleborg Sealing Solutions. All rights reserved.</p>
+                                                    </div>
+                                                </div>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                                <div id="emailbutton">
+                                    <div id="emailbox" class="emailBoxMotor">
+                                        <span style="position: relative;top:-1px" class="gradientButton_email">
+                            <input title="Cancel" class="cancelNewP" type="button" onclick="cancelEmailNew('pump')" id="cancelNew" name="cancel" value=Cancel></button></span>
+                                        <span style="position: relative;top:-1px" class="gradientButton_email">
+                            <input title="Send" type="button" onclick="sendEmailNew('pump')" id="sendNewP" name="send" value=Send></button></span>
+                                    </div>
+                                </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearFix"></div>
+                    </form>
+
+
+                    <!-- Pump Code end -->
+                    <!-- Pressure Drop Code start -->
+                    <div id="pressureDropMain" class="margin-top-10" style="display: none;">
+                        <div id="pressureDropImgHeader" class="commonHeader">
+                            <div id="link">
+                                <span id="pressureDropHeaderText"><!-- Calculate For Pressure Drop --></span>
+                                <!-- <a href="javascript:void(0)" onclick="changeImageNew('pressureDrop','')"><img src=images/formula_but.png  border="0" id="but_pic" width="99" height="28"></a> -->
+                                <a href="javascript:void(0)" onclick="changeImage()">
+                        <span class="sigmaText"><img id="formCalcImg" src="images/Formula.svg" height="14px"/></span><span class="formulaeText">Formula</span>
+                    </a>
+                            </div>
+                        </div>
+                        <div class="imgContainerPD" style="display:none">
+                            <img alt="" src="" id="mainPicPressureDrop">
+                        </div>
+                        <form name="myFormPressureDropE" id="myFormPressureDropE" style="display:none">
+                            <input type="hidden" name="lang" value="en" id="hiddenTxt">
+                            <input type="hidden" name="typeEmail" value="pressureDrop" id="typeEmail">
+                            <input type="hidden" name="subtypeEmail" class="subtypeEmailPressureDrop" value=1 id="subtypeEmail">
+                        </form>
+
+                        <form name="myFormPressureDrop" action="" method="POST" id="myFormPressureDrop">
+                            <input type="hidden" name="lang" value="en" id="hiddenTxt">
+
+                            <div class="frmContainerie7 frmContainerie7New">
+                                <div id="input" class="inputPdX">
+
+
+                                </div>
+                            </div>
+                            <div class="buttonContainerNew">
+                                <div title="Copy" onclick="copyCalc('pressureDrop')" style="margin-left:68px" class="utilityButtons utilityBtnDisabled" id="uBtnCopyPD">
+                                    <input class="utilityBtnInput" type="button" name="newCopy" value="Copy" id="newCopyPD">
+                                </div>
+                                <div title="Reset" onclick="resetCalc('pressureDrop')" class="utilityButtons utilityBtnDisabled" id="uBtnResetPD">
+                                    <input type="button" class="utilityBtnInput" id="newClearPD" value="Reset">
+                                </div>
+                                <div title="Email" onclick="emailCalc('pressureDrop')" style="margin-right:34px;" class="utilityButtons utilityBtnDisabled" id="uBtnEmailPD">
+                                    <input class="utilityBtnInput" type="button" name="newEmail" value="Email" id="newEmailPD">
+                                </div>
+                            </div>
+                            <div class="outerEmailPD" style="display:none;">
+
+                                <!--Alert Messages
+            ==================-->
+                                <div class="overlayPage_updatedN"></div>
+                                <div id="email_header">
+                                    <div class="inline-block emailTopHeaderTxtOverride"> Send email</div>
+                                    <div class="inline-block pull-right close_email"><img title="Close" class="emailBigCross" src="images/Crossbig@2x.png"></div>
+                                </div>
+                                <div id='mail_successPD' class='success_email'>Email sent successfully</div>
+                                <div id='mail_failPD' class='error_email'><img src='images/error.png'>Mail not sent, Please try again later.</div>
+                                <div id="inner">
+
+                                    <table id="emailform">
+                                        <tr class="row">
+                                            <td class="col-md-4 emailLabel">To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td class="emailText col-md-8"><input onfocus="toEmailFieldInputFocus(this)" onfocusout="toEmailFieldValidator(this)" oninput="validateEmailAddressNew('pressureDrop','to')" type="text" id="toPD" name="toPD" autocomplete="off" tabindex="-1"
+                                                />
+                                                <!--span id="cross"><img alt="" src="images/cross_button.png"></span-->
+                                                <!--span id="pic"><img alt="" src="images/tick.png"></span--></td>
+                                        </tr>
+                                        <tr class="row">
+                                            <td class="col-md-4 emailLabel">CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td class="emailText col-md-8 padding5"><input onfocus="toEmailFieldInputFocus(this)" onfocusout="toEmailFieldValidator(this)" oninput="validateEmailAddressNew('pressureDrop','to')" tabindex="-1" type="text" id="ccPD" name="cc" autocomplete="off"
+                                                />
+                                                <!--span id="cross2"><img alt="" src="images/cross_button.png"></span-->
+                                                <!--span id="pic2"><img alt="" src="images/tick.png"></span--></td>
+                                        </tr>
+                                        <tr class="row">
+                                            <td class="col-md-4 emailLabel">Subject&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td class="emailText col-md-8 padding5"><input tabindex="-1" type="text" id="subjectPD" name="subjectPD" value=Hydraulic System Calculator /></td>
+                                        </tr>
+
+
+                                        <tr>
+
+                                            <td>
+                                                <div id="messageMotor" name="messageMotor" class="messagePressureDropEmail">
+
+                                                    <div id="hdr">
+                                                        <div id="hdrtxt">
+                                                            <h3 id="pDEmailHeader">
+                                                                <!-- Cylinder Calculator -->
+                                                            </h3>
+                                                        </div>
+                                                        <div id="hdrlogo"><img src="images/trelleborg-logo.png" style="height:35px;top:-1px;position: relative;"></div>
+                                                    </div>
+                                                    <div class="contentsNew">
+                                                        <div class="lbls" id="pDInp1">
+                                                            <div class="dv1" id="pDInplbl1"></div>
+                                                            <div class="dv2">
+                                                                <div id="pDInpVal1"></div>
+                                                            </div>
+                                                            <div class="dv3">
+                                                                <div id="pDInpUnit1"></div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="lbls" id="pDInp2">
+                                                            <div class="dv1" id="pDInplbl2"></div>
+                                                            <div class="dv2">
+                                                                <div id="pDInpVal2"></div>
+                                                            </div>
+                                                            <div class="dv3">
+                                                                <div id="pDInpUnit2"></div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="lbls" id="pDInp3">
+                                                            <div class="dv1" id="pDInplbl3"></div>
+                                                            <div class="dv2">
+                                                                <div id="pDInpVal3"></div>
+                                                            </div>
+                                                            <div class="dv3">
+                                                                <div id="pDInpUnit3"></div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="lbls" id="pDInp4">
+                                                            <div class="dv1" id="pDInplbl4"></div>
+                                                            <div class="dv2">
+                                                                <div id="pDInpVal4"></div>
+                                                            </div>
+                                                            <div class="dv3">
+                                                                <div id="pDInpUnit4"></div>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <div class="lbls" id="pDOut1">
+                                                            <div class="dv1" id="pDOutlbl1"></div>
+                                                            <div class="dv2">
+                                                                <div id="pDOutVal1"></div>
+                                                            </div>
+                                                            <div class="dv3">
+                                                                <div id="pDOutUnit1"></div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div id="disclaimer">
+                                                            <label style="font-weight: bold;float: left;padding: 10px;margin-left: -11px;">Disclaimer</label>
+                                                            <p id="txtf" style="float: left;margin-left: -1px;">
+                                                                The results of this application are based on standard Hydraulic System Calculator Formulas. Although every effort has been made to ensure the accuracy of the information within this application, it is your responsibility to verify the accuracy of any
+                                                                and all data represented. Trelleborg Sealing Solutions makes no representations or warranties of any kind, expressed or implied, of the completeness, accuracy, reliability or suitability
+                                                                of the information provided by this application. Any reliance placed on the information obtained through this application is strictly at your own risk.</p>
+                                                            <p class="emailTxtbtm" style="clear:both;float: left;margin-top: 0px;margin-left: -1px; text-align: left;margin-bottom: 0px;">The information provided is in compliance with ISO 3320, ISO 3321 & ISO 4393. </p>
+
+                                                        </div>
+
+                                                        <div id="footer" style="float:left;">
+                                                            <p class="copyright">&#169;&nbsp;Trelleborg Sealing Solutions. All rights reserved.</p>
+                                                        </div>
+                                                    </div>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                    <div id="emailbutton">
+                                        <div id="emailbox" class="emailBoxMotor">
+                                            <span style="position: relative;top:-1px" class="gradientButton_email">
+                            <input title="Cancel" class="cancelNewPD" type="button" onclick="cancelEmailNew('pressureDrop')" id="cancelNew" name="cancel" value=Cancel></button></span>
+                                            <span style="position: relative;top:-1px" class="gradientButton_email">
+                            <input title="Send" type="button" onclick="sendEmailNew('pressureDrop')" id="sendNewPD" name="send" value=Send></button></span>
+                                        </div>
+                                    </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearFix"></div>
+                        </form>
+
+                        <!-- Pressure Drop Code end -->
+                        <!-- Piping Code start -->
+                        <div id="pipingMain" class="margin-top-10" style="display: none;">
+                            <div id="pressureDropImgHeader" class="commonHeader">
+                                <div id="link">
+                                    <span id="pressureDropHeaderText">Calculate</span>
+                                    <li class="dropdownchange hDDOverride" style="display:inline">
+                                        <select id="pipingHeaderDD" name="pipingHeaderDD" onchange="pipingDDChange()">
+                               <option value=1>Using absolute viscosity</option>
+                               <option value=2>Using kinematic viscosity</option>
+                           </select>
+                                    </li>
+                                    <!-- <a href="javascript:void(0)" onclick="changeImageNew('piping')"><img src=images/formula_but.png  border="0" id="but_pic" width="99" height="28"></a> -->
+                                    <a href="javascript:void(0)" onclick="changeImage()">
+                        <span class="sigmaText"><img id="formCalcImg" src="images/Formula.svg" height="14px"/></span><span class="formulaeText">Formula</span>
+                    </a>
+                                </div>
+                            </div>
+                            <div class="imgContainerPiping" style="display:none">
+                                <img alt="" src="" id="mainPicPiping">
+                            </div>
+                            <form name="myFormPipingE" id="myFormPipingE" style="display:none">
+                                <input type="hidden" name="lang" value="en" id="hiddenTxt">
+                                <input type="hidden" name="typeEmail" value="piping" id="typeEmail">
+                                <input type="hidden" name="subtypeEmail" class="subtypeEmailPiping" value=1 id="subtypeEmail">
+                            </form>
+                            <form name="myFormPiping" action="" method="POST" id="myFormPiping">
+                                <input type="hidden" name="lang" value="en" id="hiddenTxt">
+                                <div class="frmContainerie7 frmContainerie7New">
+                                    <div id="input" class="inputPipX">
+
+                                    </div>
+                                </div>
+                                <div class="buttonContainerNew">
+                                    <div onclick="copyCalc('piping')" title="Copy" style="margin-left:68px" class="utilityButtons utilityBtnDisabled" id="uBtnCopyPip">
+                                        <input class="utilityBtnInput" type="button" name="newCopy" value="Copy" id="newCopyPip">
+                                    </div>
+                                    <div onclick="resetCalc('piping')" title="Reset" class="utilityButtons utilityBtnDisabled" id="uBtnResetPip">
+                                        <input type="button" class="utilityBtnInput" id="newClearPip" value="Reset">
+                                    </div>
+                                    <div onclick="emailCalc('piping')" title="Email" style="margin-right:34px;" class="utilityButtons utilityBtnDisabled" id="uBtnEmailPip">
+                                        <input class="utilityBtnInput" type="button" name="newEmail" value="Email" id="newEmailPip">
+                                    </div>
+                                </div>
+                                <div class="outerEmailPiping" style="display:none;">
+
+                                    <!--Alert Messages
+                  ==================-->
+                                    <div class="overlayPage_updatedN"></div>
+                                    <div id="email_header">
+                                        <div class="inline-block emailTopHeaderTxtOverride"> Send email</div>
+                                        <div class="inline-block pull-right close_email"><img title="Close" class="emailBigCross" src="images/Crossbig@2x.png"></div>
+                                    </div>
+                                    <div id='mail_successPiping' class='success_email'>Email sent successfully</div>
+                                    <div id='mail_failPiping' class='error_email'><img src='images/error.png'>Mail not sent, Please try again later.</div>
+                                    <div id="inner">
+
+                                        <table id="emailform">
+                                            <tr class="row">
+                                                <td class="col-md-4 emailLabel">To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                <td class="emailText col-md-8"><input onfocus="toEmailFieldInputFocus(this)" onfocusout="toEmailFieldValidator(this)" oninput="validateEmailAddressNew('piping','to')" type="text" id="toPip" name="toPip" autocomplete="off" tabindex="-1"
+                                                    />
+                                                    <!--span id="cross"><img alt="" src="images/cross_button.png"></span-->
+                                                    <!--span id="pic"><img alt="" src="images/tick.png"></span--></td>
+                                            </tr>
+                                            <tr class="row">
+                                                <td class="col-md-4 emailLabel">CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                <td class="emailText col-md-8 padding5"><input onfocus="toEmailFieldInputFocus(this)" onfocusout="toEmailFieldValidator(this)" oninput="validateEmailAddressNew('piping','cc')" tabindex="-1" type="text" id="ccPip" name="cc" autocomplete="off" />
+                                                    <!--span id="cross2"><img alt="" src="images/cross_button.png"></span-->
+                                                    <!--span id="pic2"><img alt="" src="images/tick.png"></span--></td>
+                                            </tr>
+                                            <tr class="row">
+                                                <td class="col-md-4 emailLabel">Subject&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                <td class="emailText col-md-8 padding5"><input tabindex="-1" type="text" id="subjectPip" name="subjectPip" value=Hydraulic System Calculator /></td>
+                                            </tr>
+
+
+                                            <tr>
+
+                                                <td>
+                                                    <div id="messageMotor" name="messageMotor" class="messagePipingEmail">
+
+                                                        <div id="hdr">
+                                                            <div id="hdrtxt">
+                                                                <h3 id="pipingEmailHeader">
+                                                                    <!-- Cylinder Calculator -->
+                                                                </h3>
+                                                            </div>
+                                                            <div id="hdrlogo"><img src="images/trelleborg-logo.png" style="height:35px;top:-1px;position: relative;"></div>
+                                                        </div>
+                                                        <div class="contentsNew">
+                                                            <div class="lbls" id="pipingInp1">
+                                                                <div class="dv1" id="pipingInplbl1"></div>
+                                                                <div class="dv2">
+                                                                    <div id="pipingInpVal1"></div>
+                                                                </div>
+                                                                <div class="dv3">
+                                                                    <div id="pipingInpUnit1"></div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="lbls" id="pipingInp2">
+                                                                <div class="dv1" id="pipingInplbl2"></div>
+                                                                <div class="dv2">
+                                                                    <div id="pipingInpVal2"></div>
+                                                                </div>
+                                                                <div class="dv3">
+                                                                    <div id="pipingInpUnit2"></div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="lbls" id="pipingInp3">
+                                                                <div class="dv1" id="pipingInplbl3"></div>
+                                                                <div class="dv2">
+                                                                    <div id="pipingInpVal3"></div>
+                                                                </div>
+                                                                <div class="dv3">
+                                                                    <div id="pipingInpUnit3"></div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="lbls" id="pipingInp4">
+                                                                <div class="dv1" id="pipingInplbl4"></div>
+                                                                <div class="dv2">
+                                                                    <div id="pipingInpVal4"></div>
+                                                                </div>
+                                                                <div class="dv3">
+                                                                    <div id="pipingInpUnit4"></div>
+                                                                </div>
+                                                            </div>
+
+
+
+                                                            <div class="lbls" id="pipingOut1">
+                                                                <div class="dv1" id="pipingOutlbl1"></div>
+                                                                <div class="dv2">
+                                                                    <div id="pipingOutVal1"></div>
+                                                                </div>
+                                                                <div class="dv3">
+                                                                    <div id="pipingOutUnit1"></div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="lbls" id="pipingOut2">
+                                                                <div class="dv1" id="pipingOutlbl2"></div>
+                                                                <div class="dv2">
+                                                                    <div id="pipingOutVal2"></div>
+                                                                </div>
+                                                                <div class="dv3">
+                                                                    <div id="pipingOutUnit2"></div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="lbls" id="pipingOut3">
+                                                                <div class="dv1" id="pipingOutlbl3"></div>
+                                                                <div class="dv2">
+                                                                    <div id="pipingOutVal3"></div>
+                                                                </div>
+                                                                <div class="dv3">
+                                                                    <div id="pipingOutUnit3"></div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div id="disclaimer">
+                                                                <label style="font-weight: bold;float: left;padding: 10px;margin-left: -11px;">Disclaimer</label>
+                                                                <p id="txtf" style="float: left;margin-left: -1px;">
+                                                                    The results of this application are based on standard Hydraulic System Calculator Formulas. Although every effort has been made to ensure the accuracy of the information within this application, it is your responsibility to verify the accuracy of any
+                                                                    and all data represented. Trelleborg Sealing Solutions makes no representations or warranties of any kind, expressed or implied, of the completeness, accuracy, reliability or suitability
+                                                                    of the information provided by this application. Any reliance placed on the information obtained through this application is strictly at your own risk.</p>
+                                                                <p class="emailTxtbtm" style="clear:both;float: left;margin-top: 0px;margin-left: -1px; text-align: left;margin-bottom: 0px;">The information provided is in compliance with ISO 3320, ISO 3321 & ISO 4393. </p>
+
+                                                            </div>
+
+                                                            <div id="footer" style="float:left;">
+                                                                <p class="copyright">&#169;&nbsp;Trelleborg Sealing Solutions. All rights reserved.</p>
+                                                            </div>
+                                                        </div>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                        <div id="emailbutton">
+                                            <div id="emailbox" class="emailBoxMotor">
+                                                <span style="position: relative;top:-1px" class="gradientButton_email">
+                                  <input title="Cancel" class="cancelNewPip" type="button" onclick="cancelEmailNew('piping')" id="cancelNew" name="cancel" value=Cancel></button></span>
+                                                <span style="position: relative;top:-1px" class="gradientButton_email">
+                                  <input title="Send" type="button" onclick="sendEmailNew('piping')" id="sendNewPip" name="send" value=Send></button></span>
+                                            </div>
+                                        </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearFix"></div>
+                            </form>
+                        </div>
+                        <!-- Piping Code end -->
+                        <!-- toaster hidden div-->
+                        <div class="copyToaster">
+                            Copied </div>
+                    </div>
+
+                    <script type="text/javascript">
+                        $('#input ul input').on('focus', function() {
+                            $('#input ul').removeClass('activeSelected');
+                            $("#output ul").removeClass('activeSelected');
+                            $(this).parent().parent().addClass('activeSelected');
+
+                        });
+
+                        $('#input ul input').on('focusout', function() {
+                            $(this).parent().parent().removeClass('activeSelected');
+
+                        });
+
+                        $("#output ul input").on('focus', function() {
+                            $("#input ul").removeClass('activeSelected');
+                            $("#output ul").removeClass('activeSelected');
+                            $(this).parent().parent().addClass('activeSelected');
+                        });
+
+                        $('#output ul input').on('focusout', function() {
+                            $(this).parent().parent().removeClass('activeSelected');
+
+                        });
+
+                        $('#email').on('click', function() {
+                            /*$('.overlayPage_updated').show();*/
+                            $("#send").removeAttr('style');
+                            $("#cancel").prop('disabled', false);
+                            resetImageTagsAndState("cylinder");
+                            $("#to").focus();
+                            //$("#to").css('border','1px solid #49B1BB');
+                            setTimeout(function() {
+                                $('html,body', window.parent.document).animate({
+                                    scrollTop: 315
+                                }, "slow");
+                                /* $(window).scrollTop(0,'slow');*/
+                            }, 500);
+                        });
+
+                        //$('#send').prop("disabled",true); 
+                        $('#clear').prop("disabled", true);
+                        $('#copy').prop("disabled", true);
+                        $('#email').prop("disabled", true);
+                    </script>
+                    <!-- this is for passing variables from php -->
+                    <script type="text/javascript">
+                        cylinderImgHeaderText = 'Cylinder Formula';
+                        cylinderCalculatorHeaderText = 'Calculate For Cylinder';
+                        motHDDFlowRateText = 'Flow rate';
+                        motHDDPressureText = 'Pressure';
+                        motHDDDiplacementText = 'Displacement';
+                        motHDDSpeedText = 'Speed';
+                        motHDDTorqueText = 'Torque';
+                        motHDDPowerText = 'Power';
+                        motHDDVolEffText = 'Volumetric efficiency';
+                        motHDDMechEffText = 'Mechanical efficiency';
+
+
+
+                        pumpHDDFlowRateText = 'Flow rate';
+                        pumpHDDElectMotPowerText = 'Electric motor power';
+                        pumpHDDDiplacementText = 'Displacement';
+                        pumpHDDTotEffText = 'Total efficiency';
+                        pumpHDDSpeedText = 'Speed';
+                        pumpHDDPressureText = 'Pressure';
+                        pumpHDDVolEffText = 'Volumetric efficiency';
+                        pumpHDDMechEffText = 'Mechanical efficiency';
+
+
+                        pDFlowRateText = 'Flow rate';
+                        pDDiameterText = 'Diameter';
+                        pDOrificeText = 'Orifice flow coefficient';
+                        pDGravityText = 'Specific gravity of fluid';
+                        pDOutputText = 'Pressure drop';
+
+                        pipOilFlowRateText = 'Flow rate';
+                        pipSpGravityText = 'Specific gravity';
+                        pipPipeDiameterText = 'Inside pipe diameter';
+                        pipAbsViscosityText = 'Absolute viscosity';
+                        pipKinViscosityText = 'Kinematic viscosity';
+                        pipCrossSecAreaText = 'Cross-sectional area';
+                        pipVelocityText = 'Velocity';
+                        pipReynoldNumText = 'Reynolds number';
+
+                        measurementUnitFlag = "metric"; //other value is imperial
+                        /*measurementUnitFlag = 'Metric';*/
+                        flagForNotChangingMeasurementFields = true; //
+                        formulaeTextIs = 'Formula';
+                        calculateTextIs = 'Calculator';
+
+                        emailSuccessMessage = 'E-Mail Sent Successfully.';
+                        emailFailedMessage = 'Mail not sent, Please try again later.';
+                        toText = 'To';
+                        ccText = 'CC';
+                        subText = 'Subject';
+                        subjectText = 'Hydraulic Cylinder Calculator – Results';
+                        emailHeaderText = 'Cylinder Calculator';
+                        disclaimerText = 'Disclaimer';
+                        lowerDisclaimerText = '"The results of this application are based on standard Hydraulic System Calculator Formulas. Although every effort has been made to ensure the accuracy of the information within this application, it is your responsibility to verify the accuracy of any and all data represented. Trelleborg Sealing Solutions makes no representations or warranties of any kind, expressed or implied, of the completeness, accuracy, reliability or suitability of the information provided by this application. Any reliance placed on the information obtained through this application is strictly at your own risk."';
+                        bottomEmailText = 'The information provided is in compliance with ISO 3320, ISO 3321 & ISO 4393.';
+                        sendBtnText = 'Send';
+                        cancelBtnText = 'Cancel';
+                        copyrightText = 'Trelleborg Sealing Solutions. All rights reserved.';
+
+                        emailTopHeaderTxt = 'Send email';
+                        emailSendSuccessfullTxt = 'Email sent successfully';
+                        emailDefaultSubjectTxt = 'Hydraulic System Calculator';
+                        emailCalcCylinderHeadTxt = 'Cylinder Calculator';
+                        emailCalcMotorHeadTxt = 'Motor Calculator';
+                        emailCalcPumpHeadTxt = 'Pump Calculator';
+                        emailCalcPressureDropHeadTxt = 'Pressure drop Calculator';
+                        emailCalcPipingHeadTxt = 'Piping Calculator';
+
+                        pipingKinViscosityTxt = 'Using kinematic viscosity';
+                        pipingAbsViscosityTxt = 'Using absolute viscosity';
+
+                        emailCalcMotorFlowRateTxt = 'Motor - Flow rate Calculator';
+                        emailCalcMotorPressureTxt = 'Motor - Pressure Calculator';
+                        emailCalcMotorDisplacementTxt = 'Motor - Displacement Calculator';
+                        emailCalcMotorSpeedTxt = 'Motor - Speed Calculator';
+                        emailCalcMotorTorqueTxt = 'Motor - Torque Calculator';
+                        emailCalcMotorPowerTxt = 'Motor - Power Calculator';
+
+                        emailCalcPumpFlowRateTxt = 'Pump - Flow rate Calculator';
+                        emailCalcPumpDisplacementTxt = 'Pump - Displacement Calculator';
+                        emailCalcPumpElectricMotorTxt = 'Pump - Electric motor power Calculator';
+                        emailCalcPumpTotalEffTxt = 'Pump - Total efficiency Calculator';
+                        emailCalcPressureDropHeadTxt = 'Pressure drop Calculator';
+
+                        emailCalcPipingAbsViscosityTxt = 'Piping - Using absolute viscosity Calculator';
+                        emailCalcPipingKinViscosityTxt = 'Piping - Using kinematic viscosity Calculator';
+
+                        langIs = 'en';
+                        if (langIs == 'jp') {
+                            $('#cylinderTabIdText').text('シリンダ');
+                            $('#motorTabIdText').text('モータ');
+                            $('#pumpTabIdText').text('ポンプ');
+                            $('#pressureTabIdText').text('圧力');
+                            $('#pressureTabIdText1').text('損失');
+                            $('#pipingTabIdText').text('配管');
+
+                            $('#cylinderTabId').attr('title', 'シリンダ');
+                            $('#motorTabId').attr('title', 'モータ');
+                            $('#pumpTabId').attr('title', 'ポンプ');
+                            $('#pressureDropTabId').attr('title', '圧力損失');
+                            $('#pipingTabId').attr('title', '配管');
+                        } else if (langIs == 'de') {
+                            $('#cylinderTabIdText').text('Zylinder');
+                            $('#motorTabIdText').text('Motor');
+                            $('#pumpTabIdText').text('Pumpe');
+                            $('#pressureTabIdText').text('Druckabfall');
+                            $('#pressureTabIdText1').text('');
+                            $('#pipingTabIdText').text('Rohre');
+
+                            $('#cylinderTabId').attr('title', 'Zylinder');
+                            $('#motorTabId').attr('title', 'Motor');
+                            $('#pumpTabId').attr('title', 'Pumpe');
+                            $('#pressureDropTabId').attr('title', 'Druckabfall');
+                            $('#pipingTabId').attr('title', 'Rohre');
+                        } else if (langIs == 'zh') {
+                            $('#cylinderTabIdText').text('油缸');
+                            $('#motorTabIdText').text('马达');
+                            $('#pumpTabIdText').text('泵');
+                            $('#pressureTabIdText').text('压降');
+                            $('#pressureTabIdText1').text('');
+                            $('#pipingTabIdText').text('管道系统');
+
+                            $('#cylinderTabId').attr('title', '油缸');
+                            $('#motorTabId').attr('title', '马达');
+                            $('#pumpTabId').attr('title', '泵');
+                            $('#pressureDropTabId').attr('title', '压降');
+                            $('#pipingTabId').attr('title', '管道系统');
+                        } else {
+                            $('#cylinderTabIdText').text('Cylinder');
+                            $('#motorTabIdText').text('Motor');
+                            $('#pumpTabIdText').text('Pump');
+                            $('#pressureTabIdText').text('Pressure');
+                            $('#pressureTabIdText1').text('Drop');
+                            $('#pipingTabIdText').text('Piping');
+                        }
+                    </script>
+
+                    <script type="text/javascript">
+                        var currentScreen = 1;
+
+                        $(document).ready(function() {
+                            //apply stylish select on all the screens 
+                            /*console.log("langIs",langIs);*/
+                            if (langIs != "en") {
+
+                            }
+                            $("#motorHeaderDD").sSelect();
+                            $("#motorHeaderDD").resetSS();
+
+                            $("#pumpHeaderDD").sSelect();
+                            $("#pumpHeaderDD").resetSS();
+
+                            $("#pipingHeaderDD").sSelect();
+                            $("#pipingHeaderDD").resetSS();
+                            $(".icon-Cylinder-icon-03").css('color', '#49B1BB');
+
+                            $("#outer input:text").on("keypress", function(e) {
+                                return e.keyCode != 13;
+                            });
+                            detectIEVersion();
+                            //adding default subject to email
+                            $("#subject,#subjectM,#subjectP,#subjectPD,#subjectPip").val(emailDefaultSubjectTxt);
+                            //change cylinder color
+                            $("#cylinderTabIdText").addClass("turquoiseColor");
+                            $("#cylinderULine").addClass("uLineOverride");
+                            //these are the click handlers for the slider
+                            $("#cylinderTabId").click(function() {
+                                if (checkIfEmailBoxIsOpen() == true) {
+                                    return;
+                                }
+                                resetAllOpenEmailScreens();
+                                resetImageTagsAndState("cylinder");
+                                $("#motorMain,#pumpMain,#pressureDropMain,#pipingMain").hide();
+                                $("#main").show();
+                                currentScreen = 1;
+                                $("#motorTabIdText,#pumpTabIdText,#pressureTabIdText,#pressureTabIdText1,#pipingTabIdText").removeClass("turquoiseColor");
+                                $("#motorULine,#pumpULine,#pressureDropULine,#pipingULine").removeClass("uLineOverride");
+                                $("#cylinderTabIdText").addClass("turquoiseColor");
+                                $("#cylinderULine").addClass("uLineOverride");
+                                $(".icon-Cylinder-icon-03").css('color', '#49B1BB');
+                                $(".icon-motor,.icon-Pump,.icon-pressureDropNew,.icon-Piping").css('color', 'black');
+                                $("#clear").click();
+                            });
+                            $("#motorTabId").click(function() {
+                                if (checkIfEmailBoxIsOpen() == true) {
+                                    return;
+                                }
+                                resetImageTagsAndState();
+                                resetAllOpenEmailScreens();
+                                $("#main,#pumpMain,#pressureDropMain,#pipingMain").hide();
+                                $("#motorMain").show();
+                                currentScreen = 2;
+                                initMotordd();
+                                $("#cylinderTabIdText,#pumpTabIdText,#pressureTabIdText,#pressureTabIdText1,#pipingTabIdText").removeClass("turquoiseColor");
+                                $("#cylinderULine,#pumpULine,#pressureDropULine,#pipingULine").removeClass("uLineOverride");
+                                $("#motorTabIdText").addClass("turquoiseColor");
+                                $("#motorULine").addClass("uLineOverride");
+                                $(".icon-motor").css('color', '#49B1BB');
+                                $(".icon-Cylinder-icon-03,.icon-Pump,.icon-pressureDropNew,.icon-Piping").css('color', 'black');
+                                $("#motorHeaderDD").val(1);
+                                $("#motorHeaderDD").getSetSSValue(1);
+                                $("#motorHeaderDD").data("prev", $("#motorHeaderDD").val());
+                            });
+                            $("#pumpTabId").click(function() {
+                                if (checkIfEmailBoxIsOpen() == true) {
+                                    return;
+                                }
+                                resetImageTagsAndState();
+                                resetAllOpenEmailScreens();
+                                $("#main,#motorMain,#pressureDropMain,#pipingMain").hide();
+                                $("#pumpMain").show();
+                                currentScreen = 3;
+                                initPumpdd();
+                                $("#cylinderTabIdText,#pressureTabIdText,#pressureTabIdText1,#motorTabIdText,#pipingTabIdText").removeClass("turquoiseColor");
+                                $("#cylinderULine,#motorULine,#pressureDropULine,#pipingULine").removeClass("uLineOverride");
+                                $("#pumpTabIdText").addClass("turquoiseColor");
+                                $("#pumpULine").addClass("uLineOverride");
+                                $(".icon-Pump").css('color', '#49B1BB');
+                                $(".icon-motor,.icon-Cylinder-icon-03,.icon-pressureDropNew,.icon-Piping").css('color', 'black');
+                                $("#pumpHeaderDD").val(1);
+                                $("#pumpHeaderDD").getSetSSValue(1);
+                                $("#pumpHeaderDD").data("prev", $("#pumpHeaderDD").val());
+                            });
+                            $("#pressureDropTabId").click(function() {
+                                if (checkIfEmailBoxIsOpen() == true) {
+                                    return;
+                                }
+                                resetImageTagsAndState();
+                                resetAllOpenEmailScreens();
+                                $("#main,#motorMain,#pumpMain,#pipingMain").hide();
+                                $("#pressureDropMain").show();
+                                currentScreen = 4;
+                                initPDdd();
+                                $("#cylinderTabIdText,#pumpTabIdText,#motorTabIdText,#pipingTabIdText").removeClass("turquoiseColor");
+                                $("#cylinderULine,#motorULine,#pumpULine,#pipingULine").removeClass("uLineOverride");
+                                $("#pressureTabIdText,#pressureTabIdText1").addClass("turquoiseColor");
+                                $("#pressureDropULine").addClass("uLineOverride");
+
+                                $(".icon-pressureDropNew").css('color', '#49B1BB');
+                                $(".icon-motor,.icon-Cylinder-icon-03,.icon-Pump,.icon-Piping").css('color', 'black');
+
+                            });
+                            $("#pipingTabId").click(function() {
+                                if (checkIfEmailBoxIsOpen() == true) {
+                                    return;
+                                }
+                                resetImageTagsAndState();
+                                resetAllOpenEmailScreens();
+                                $("#main,#motorMain,#pumpMain,#pressureDropMain").hide();
+                                $("#pipingMain").show();
+                                $(".slick-next").click();
+                                currentScreen = 5;
+                                initPipingdd();
+                                $("#cylinderTabIdText,#pumpTabIdText,#motorTabIdText,#pressureTabIdText,#pressureTabIdText1").removeClass("turquoiseColor");
+                                $("#cylinderULine,#motorULine,#pumpULine,#pressureDropULine").removeClass("uLineOverride");
+                                $("#pipingTabIdText").addClass("turquoiseColor");
+                                $("#pipingULine").addClass("uLineOverride");
+
+                                $(".icon-Piping").css('color', '#49B1BB');
+                                $(".icon-motor,.icon-Cylinder-icon-03,.icon-Pump,.icon-pressureDropNew").css('color', 'black');
+                                $("#pipingHeaderDD").val(1);
+                                $("#pipingHeaderDD").getSetSSValue(1);
+                                $("#pipingHeaderDD").data("prev", $("#pipingHeaderDD").val());
+                            });
+
+
+
+                            var dirtyFlag;
+                            var outer = $("#outer");
+                            $("#email").on('click', function(event) {
+                                // Prevent the default event.
+                                if (dirtyFlag) return;
+                                dirtyFlag = true;
+                                setTimeout(function() {
+                                    //console.log('clean and proceeding');
+                                    dirtyFlag = false;
+                                }, 500);
+
+                                event.preventDefault();
+
+                                // Toggle the slide based on its current
+                                // visibility.
+                                //  if (outer.is( ":visible" )){
+                                // $("#to").css('border','1px solid #DBDBDB');
+                                // Hide - slide up.
+                                outer.slideToggle(600);
+                                //outer.show();
+                                //$('.Unit_selection').attr("tabindex", -1);
+                                //$('input, .newListSelected, #link a').attr("tabindex", -1);
+                                $('input, .newListSelected, #link a').each(function() {
+                                    this.tabIndex = -1;
+
+                                });
+
+                                var inputs11 = $('#to, #cc, #subject, #send, #cancel'),
+                                    inputTo;
+
+                                // bind on keydown
+                                inputs11.on('keydown', function(e) {
+
+                                    // if we pressed the tab
+                                    if (e.keyCode == 9 || e.which == 9) {
+                                        // prevent default tab action
+                                        e.preventDefault();
+
+                                        if (e.shiftKey) {
+                                            // get previous input based on the current input
+                                            inputTo = inputs11.get(inputs11.index(this) - 1);
+                                        } else {
+                                            // get next input based on the current input
+                                            inputTo = inputs11.get(inputs11.index(this) + 1);
+                                        }
+
+                                        // move focus to inputTo, otherwise focus first input
+                                        if (inputTo) {
+                                            inputTo.focus();
+                                        } else {
+                                            inputs11[0].focus();
+                                        }
+                                    }
+                                });
+                                $('#to,#toP,#toM,#toPD,#toPip').focus();
+                                //alert("UP");  
+
+                                $("#to,#toP,#toM,#toPD,#toPip").keyup(function() {
+                                    // $('#to,#toP,#toM,#toPD,#toPip').css({border:"1px solid #959499"});
+                                });
+
+
+
+
+                                opArray = $('#output').find('input[disabled]');
+                                ipArray = $('#input').find('input[disabled]');
+
+                                for (i = 0; i < opArray.length; i++) {
+                                    fieldID = opArray[i].id;
+                                    $("#" + fieldID).attr("disabled", false);
+                                    $("#" + fieldID).addClass("reset");
+
+                                }
+
+                                for (i = 0; i < ipArray.length; i++) {
+                                    ID = ipArray[i].id;
+                                    $("#" + ID).attr("disabled", false);
+                                    $("#" + ID).addClass("reset");
+
+                                }
+
+
+                            });
+
+
+                            var tabindex = 1;
+
+
+                            $('input, .newListSelected, #link a').each(function() {
+                                // if ((this.type != "hidden") {
+
+                                var $inputbox = $(this);
+
+                                $inputbox.attr("tabindex", tabindex);
+                                //$('input:disabled').removeAttr("disabled");
+                                //$('input:disabled').attr("tabindex", "-1");
+                                tabindex++;
+
+                            });
+                            /*var tabindex = 1;
+  $('#input input, #output input').each(function() {
+     //if ((this.type != "hidden") && (this.attr != "disabled")) {
+     
+     
+       var $inputbox = $(this);
+       $inputbox.attr("tabindex", tabindex);
+        //$('input:disabled').removeAttr("disabled");
+        //$('input:disabled').attr("tabindex", "-1");
+       tabindex++;
+     
+  });*/
+
+
+                            if ($("#clear").parent().hasClass('gradientButton resetButton_1')) {
+                                $("#clear").parent().removeClass("gradientButton resetButton_1").addClass("removeGradient");
+                            }
+
+                            if ($("#copy").parent().hasClass('gradientButton copyButton_1')) {
+                                $("#copy").parent().removeClass("gradientButton").addClass("removeGradient");
+                            }
+
+                            if ($("#email").parent().hasClass('gradientButton')) {
+                                $("#email").parent().removeClass("gradientButton").addClass("removeGradient");
+                            }
+                            var Browser_Name = navigator.appName;
+                            if (Browser_Name != "Microsoft Internet Explorer") {
+                                /* var clip = new ZeroClipboard.Client();
+                                 clip.glue("copy");*/
+
+                                $("#piston,#rod,#stroke,#preassure,#oilflow,#piston_force,#rod_force,#piston_time,#rod_time,#piston_velocity,#rod_velocity").keyup(function() {
+                                    /*Input Fields*/
+                                    var lb1 = $("#lb1").text();
+                                    var piston = $("#piston").val();
+                                    var unit1 = $("#unit1").val();
+                                    var lb2 = $("#lb2").text();
+                                    var rod = $("#rod").val();
+                                    var unit2 = $("#unit2").val();
+                                    var lb3 = $("#lb3").text();
+                                    var stroke = $("#stroke").val();
+                                    var unit3 = $("#unit3").val();
+                                    var lb4 = $("#lb4").text();
+                                    var preassure = $("#preassure").val();
+                                    var unit4 = $("#unit4").val();
+                                    var lb5 = $("#lb5").text();
+                                    var oilflow = $("#oilflow").val();
+                                    var unit5 = $("#unit5").val();
+
+                                    var p = $('#li1').text();
+                                    var r = $('#li2').text();
+                                    /*Output Fields*/
+                                    var lb6 = $('#lb6').text();
+                                    var piston_area = $("#piston_area").val();
+                                    var rod_area = $("#rod_area").val();
+                                    var unit11 = $("#unit11").val();
+                                    var lb7 = $('#lb7').text();
+                                    var piston_volume = $("#piston_volume").val();
+                                    var rod_volume = $("#rod_volume").val();
+                                    var unit12 = $("#unit12").val();
+                                    //var lbl_Piston_Area = "Area";
+                                    var lb8 = $('#lb8').text();
+                                    var piston_force = $("#piston_force").val();
+                                    var rod_force = $("#rod_force").val();
+                                    var unit13 = $("#unit13").val();
+                                    var lb9 = $('#lb9').text();
+                                    var piston_time = $("#piston_time").val();
+                                    var rod_time = $("#rod_time").val();
+                                    var unit14 = $("#unit14").val();
+                                    var lb10 = $('#lb10').text();
+                                    var piston_velocity = $("#piston_velocity").val();
+                                    var rod_velocity = $("#rod_velocity").val();
+                                    var unit15 = $("#unit15").val();
+                                    var lb11 = $('#lb11').text();
+                                    var piston_outflow = $("#piston_outflow").val();
+                                    var rod_outflow = $("#rod_outflow").val();
+                                    var unit16 = $("#unit16").val();
+                                    var lb12 = "Ratio";
+                                    var ratio = $("#ratio").val();
+                                    var clipboard_txt = lb1 + '\t' + piston + '\t\t' + unit1 + "\r\n" + lb2 + '\t\t' + rod + '\t\t' + unit2 + "\r\n" +
+                                        lb3 + '\t\t' + stroke + '\t\t' + unit3 + "\r\n" + lb4 + '\t\t' + preassure + '\t\t' + unit4 + "\r\n" + lb5 + '\t\t' + oilflow + '\t\t' + unit5 + '\n\n' +
+                                        '\t' + p + '\t\t' + r + '\n\n' + lb6 + '\t' + piston_area + '\t' + rod_area + '\t' + unit11 + '\n\n' + lb7 + '\t' +
+                                        piston_volume + '\t' + rod_volume + '\t' + unit12 + '\n\n' + lb8 + '\t' + piston_force + '\t' + rod_force + '\t' + unit13 + '\n\n' + lb9 + '\t' +
+                                        piston_time + '\t' + rod_time + '\t' + unit14 + '\n\n' + lb10 + '\t' + piston_velocity + '\t' + rod_velocity + '\t' + unit15 + '\n\n' + lb11 + '\t' +
+                                        piston_outflow + '\t' + rod_outflow + '\t' + unit16 + '\n\n' + lb12 + '\t' + ratio;
+                                    /*clip.setText(clipboard_txt);
+                                    clip.addEventListener('complete', function(client, text) {
+                                      //alert("Copied text to clipboard:\n" + text);
+                                    });*/
+
+                                });
+                                // Changes By Prakhar
+                                $("#unit1,#unit2,#unit3,#unit4,#unit5,#unit11,#unit12,#unit13,#unit14,#unit15,#unit16").change(function() {
+                                    /*Input Fields*/
+                                    var lb1 = $("#lb1").text();
+                                    var piston = $("#piston").val();
+                                    var unit1 = $("#unit1").val();
+                                    var lb2 = $("#lb2").text();
+                                    var rod = $("#rod").val();
+                                    var unit2 = $("#unit2").val();
+                                    var lb3 = $("#lb3").text();
+                                    var stroke = $("#stroke").val();
+                                    var unit3 = $("#unit3").val();
+                                    var lb4 = $("#lb4").text();
+                                    var preassure = $("#preassure").val();
+                                    var unit4 = $("#unit4").val();
+                                    var lb5 = $("#lb5").text();
+                                    var oilflow = $("#oilflow").val();
+                                    var unit5 = $("#unit5").val();
+
+                                    var p = $('#li1').text();
+                                    var r = $('#li2').text();
+                                    /*Output Fields*/
+                                    var lb6 = $('#lb6').text();
+                                    var piston_area = $("#piston_area").val();
+                                    var rod_area = $("#rod_area").val();
+                                    var unit11 = $("#unit11").val();
+                                    var lb7 = $('#lb7').text();
+                                    var piston_volume = $("#piston_volume").val();
+                                    var rod_volume = $("#rod_volume").val();
+                                    var unit12 = $("#unit12").val();
+                                    //var lbl_Piston_Area = "Area";
+                                    var lb8 = $('#lb8').text();
+                                    var piston_force = $("#piston_force").val();
+                                    var rod_force = $("#rod_force").val();
+                                    var unit13 = $("#unit13").val();
+                                    var lb9 = $('#lb9').text();
+                                    var piston_time = $("#piston_time").val();
+                                    var rod_time = $("#rod_time").val();
+                                    var unit14 = $("#unit14").val();
+                                    var lb10 = $('#lb10').text();
+                                    var piston_velocity = $("#piston_velocity").val();
+                                    var rod_velocity = $("#rod_velocity").val();
+                                    var unit15 = $("#unit15").val();
+                                    var lb11 = $('#lb11').text();
+                                    var piston_outflow = $("#piston_outflow").val();
+                                    var rod_outflow = $("#rod_outflow").val();
+                                    var unit16 = $("#unit16").val();
+                                    var lb12 = "Ratio";
+                                    var ratio = $("#ratio").val();
+                                    var clipboard_txt = lb1 + '\t' + piston + '\t\t' + unit1 + "\r\n" + lb2 + '\t\t' + rod + '\t\t' + unit2 + "\r\n" +
+                                        lb3 + '\t\t' + stroke + '\t\t' + unit3 + "\r\n" + lb4 + '\t\t' + preassure + '\t\t' + unit4 + "\r\n" + lb5 + '\t\t' + oilflow + '\t\t' + unit5 + '\n\n' +
+                                        '\t' + p + '\t\t' + r + '\n\n' + lb6 + '\t' + piston_area + '\t' + rod_area + '\t' + unit11 + '\n\n' + lb7 + '\t' +
+                                        piston_volume + '\t' + rod_volume + '\t' + unit12 + '\n\n' + lb8 + '\t' + piston_force + '\t' + rod_force + '\t' + unit13 + '\n\n' + lb9 + '\t' +
+                                        piston_time + '\t' + rod_time + '\t' + unit14 + '\n\n' + lb10 + '\t' + piston_velocity + '\t' + rod_velocity + '\t' + unit15 + '\n\n' + lb11 + '\t' +
+                                        piston_outflow + '\t' + rod_outflow + '\t' + unit16 + '\n\n' + lb12 + '\t' + ratio;
+                                    /*clip.setText(clipboard_txt);
+                                    clip.addEventListener('complete', function(client, text) {
+                                      //alert("Copied text to clipboard:\n" + text);
+                                    });*/
+
+                                });
+                                // End Changes By Prakhar
+
+                            }
+
+                            // $(window).scrollTop($('#container').offset().top);
+
+                        });
+                    </script>
+
+</body>
+
+</html>
